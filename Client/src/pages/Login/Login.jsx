@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,6 +37,9 @@ const Login = () => {
   };
   return (
     <Container>
+      <Helmet>
+        <title>Task Manager | Login</title>
+      </Helmet>
       <div className="flex flex-col md:flex-row justify-center items-center">
         {/* animation */}
         <div className="md:w-1/2">

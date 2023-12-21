@@ -46,7 +46,9 @@ function ResponsiveAppBar() {
           <li className="block">Login</li>
         </NavLink>
       )}
-      <li>About</li>
+   <NavLink to='/about'>
+   <li>About</li>
+   </NavLink>
       {user && (
         <li className="cursor-pointer" onClick={() => logOut()}>
           Logout
