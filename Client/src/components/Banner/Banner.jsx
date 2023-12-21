@@ -1,11 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Container from "../shared/Container/Container";
 import useAuth from "../../hooks/useAuth";
 
 const Banner = () => {
 
 const {user} = useAuth();
+const navigate = useNavigate();
+const handleExplore = ()=>{
+  if (user) {
+    navigate('/')
+  }else{
+    navigate('/login')
+  }
+
+}
 
   return (
     <Container>
@@ -24,9 +33,9 @@ const {user} = useAuth();
             temporibus unde repellat, amet consequuntur tempora rem! Adipisci
             aliquam omnis perspiciatis alias?
           </p>
-          <Link to='/login'>
-          <button className="btn mt-6 text-blue-900 shadow-md shadow-gray-400/50 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 rounded-md hover:bg-blue-900 hover:text-white transition-transform ">Let's Explore</button>
-          </Link>
+          
+          <button onClick={handleExplore} className="btn mt-6 text-blue-900 shadow-md shadow-gray-400/50 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 rounded-md hover:bg-blue-900 hover:text-white transition-transform ">Let's Explore</button>
+         
         </div>
 
         {/* for image */}

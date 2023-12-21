@@ -1,31 +1,17 @@
-li{
-    text-align: center;
-    padding:5px 10px !important;
-    margin: 0px !important;
-
+li {
+  text-align: center;
+  padding: 5px 10px !important;
+  margin: 0px !important;
 }
 
 li:hover {
-    background-color: #1E3A8A;
-    color: white;
-    border-radius: 5px;
+  background-color: #1e3a8a;
+  color: white;
+  border-radius: 5px;
 }
 
-a.active{
-    background-color: #1E3A8A;
-    color: white;
-    border-radius: 5px;
-}
-
-.MuiToolbar-root{
-    flex-direction: row ;
-    justify-content: center !important;
-    gap:0px !important;
-    
-}
-.MuiPaper-root{
-    flex-direction: row ;
-    justify-content: center !important;
-    gap:0px !important;
-    
+a.active {
+  background-color: #1e3a8a;
+  color: white;
+  border-radius: 5px;
 }

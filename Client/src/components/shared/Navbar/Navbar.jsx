@@ -3,32 +3,33 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+
 import "./Nav.css";
 import useAuth from "../../../hooks/useAuth";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function ResponsiveAppBar() {
   const { user, logOut } = useAuth();
 
   const navItems = (
-    <ul className="flex flex-col md:flex-row lg:justify-start gap-1 xs:justify-center xl:gap-5 items-center no-underline list-none px-2 ">
+    <ul className="flex flex-wrap flex-row lg:justify-start gap-1 xs:justify-center xl:gap-5 items-center no-underline list-none px-2 ">
       <NavLink to="/">
         {" "}
         <li>Home</li>
       </NavLink>
-      <NavLink to="/dashboard">
-        {" "}
-        <li>Dashboard</li>
-      </NavLink>
+      {user && (
+        <NavLink to="/dashboard">
+          {" "}
+          <li>Dashboard</li>
+        </NavLink>
+      )}
       {user ? (
         ""
       ) : (
@@ -45,6 +46,7 @@ function ResponsiveAppBar() {
           <li className="block">Login</li>
         </NavLink>
       )}
+      <li>About</li>
       {user && (
         <li className="cursor-pointer" onClick={() => logOut()}>
           Logout
@@ -53,13 +55,29 @@ function ResponsiveAppBar() {
     </ul>
   );
 
-  const settings = [
-    { pathname: "Home", path: "/" },
-    {
-      pathname: "Blog",
-      path: "/blog",
-    },
-  ];
+  const settings = (
+    <ul>
+      {user ? (
+        <>
+          <Link to="/profile">
+            <li>Profile</li>
+          </Link>
+          <li className="cursor-pointer" onClick={() => logOut()}>
+            Logout
+          </li>
+        </>
+      ) : (
+        <>
+          <Link to="/login">
+            <li>Login</li>
+          </Link>
+          <Link to="/signup">
+            <li>Signup</li>
+          </Link>
+        </>
+      )}
+    </ul>
+  );
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -83,7 +101,7 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl" className="bg-white">
         <Toolbar disableGutters className="bg-white text-black">
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box  className="md:hidden">
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -91,6 +109,7 @@ function ResponsiveAppBar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{display:{xs:'block',md:'none'}}}
             >
               <MenuIcon />
             </IconButton>
@@ -109,43 +128,30 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
+            
             >
               {navItems}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box className="w-full xs:hidden lg:block">{navItems}</Box>
 
-          <Box className="ml-auto">
-            <Tooltip>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Box className="w-full xs:hidden md:block">{navItems}</Box>
+
+          <Box className="ml-auto text-black hover:text-black">
+            <Tooltip >
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0 }}
+              
+              >
+                <Avatar
+                  alt="Remy Sharp"
+                  src="/static/images/avatar/2.jpg"
+                 
+                />
               </IconButton>
             </Tooltip>
             <Menu
-              className="w-28"
-              sx={{ mt: "45px" }}
+              sx={{ mt: "45px", width: "200px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -159,12 +165,9 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
+              className="w-28"
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting.pathname} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting.pathname}</Typography>
-                </MenuItem>
-              ))}
+              {settings}
             </Menu>
           </Box>
         </Toolbar>
