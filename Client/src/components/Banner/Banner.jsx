@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import Container from "../shared/Container/Container";
 
 const Banner = () => {
   return (
     <Container>
-      <div className="flex flex-col md:flex-row sm: justify-center gap-5 xl:gap-10 items-center font-Montserrat p-5">
+      <div className="flex flex-col md:flex-row sm: justify-center gap-5 xl:gap-10 items-center font-Montserrat">
         {/* for tex */}
 
         <div className="md:w-1/2 space-y-4 md:space-y-6">
@@ -12,13 +13,15 @@ const Banner = () => {
             <br className="hidden lg:block"/>
             <br className="hidden xl:block"/>  Task Manager
           </h1>
-          <p className="text-sm xl:pt-5">
+          <p className="text-lg xl:pt-5 w-9/12">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe
             itaque natus, adipisci quia voluptatem quod modi optio odio
             temporibus unde repellat, amet consequuntur tempora rem! Adipisci
             aliquam omnis perspiciatis alias?
           </p>
-          <button className="btn text-blue-900 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 transition rounded-md hover:bg-blue-900 hover:text-white">Explore more</button>
+          <Link to='/login'>
+          <button className="btn mt-4 text-blue-900 shadow-md shadow-gray-400/50 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 rounded-md hover:bg-blue-900 hover:text-white transition-transform ">Explore more</button>
+          </Link>
         </div>
 
         {/* for image */}

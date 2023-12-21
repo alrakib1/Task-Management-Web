@@ -103,7 +103,7 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.pathname} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" className="text-black">
+                  <Typography     href={page.path} textAlign="center" className="text-black">
                     {page.pathname}
                   </Typography>
                 </MenuItem>
@@ -152,6 +152,7 @@ function ResponsiveAppBar() {
                   key={page}
                   onClick={handleCloseNavMenu}
                   className="my-2 block "
+                  href={page.path}
                 >
                   {page.pathname}
                 </Button>
