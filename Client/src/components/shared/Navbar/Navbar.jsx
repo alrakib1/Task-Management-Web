@@ -182,8 +182,8 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.pathname} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting.pathname}</Typography>
                 </MenuItem>
               ))}
             </Menu>
