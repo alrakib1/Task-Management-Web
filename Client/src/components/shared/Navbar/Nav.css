@@ -1,0 +1,16 @@
+li{
+    text-align: center;
+    padding:5px 10px !important;
+    margin: 0px !important;
+
+}
+li > button{
+    text-align: center;
+    padding:0px !important;
+    margin: 0px !important;
+
+}
+ul:hover{
+    background-color: #1E3A8A !important;
+    color:white !important;
+}
