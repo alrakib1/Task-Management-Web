@@ -24,3 +24,9 @@ and type the following command inside client and sever folder separately :
 
 It's a website where you can register and log in with your email or google account.
 
+
+## Features
+
+- If you click on explore more, it will navigate you to login page. After successful log in user will be redirected to the home page and will be able to see a toast on the top of the website.
+
+- If use do any 
