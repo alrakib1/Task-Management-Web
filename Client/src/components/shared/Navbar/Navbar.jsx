@@ -8,29 +8,59 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import "./Nav.css";
-
-const pages = [
-  { pathname: "Home", path: "/" },
-  {
-    pathname: "Blog",
-    path: "/blog",
-  },
-];
-const settings = [
-  { pathname: "Home", path: "/" },
-  {
-    pathname: "Blog",
-    path: "/blog",
-  },
-];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import useAuth from "../../../hooks/useAuth";
+import { NavLink } from "react-router-dom";
 
 function ResponsiveAppBar() {
+  const { user, logOut } = useAuth();
+
+  const navItems = (
+    <ul className="flex flex-col md:flex-row lg:justify-start gap-1 xs:justify-center xl:gap-5 items-center no-underline list-none px-2 ">
+      <NavLink to="/">
+        {" "}
+        <li>Home</li>
+      </NavLink>
+      <NavLink to="/dashboard">
+        {" "}
+        <li>Dashboard</li>
+      </NavLink>
+      {user ? (
+        ""
+      ) : (
+        <NavLink to="/signup">
+          {" "}
+          <li className="inline-block">Signup</li>
+        </NavLink>
+      )}
+      {user ? (
+        ""
+      ) : (
+        <NavLink to="/login">
+          {" "}
+          <li className="block">Login</li>
+        </NavLink>
+      )}
+      {user && (
+        <li className="cursor-pointer" onClick={() => logOut()}>
+          Logout
+        </li>
+      )}
+    </ul>
+  );
+
+  const settings = [
+    { pathname: "Home", path: "/" },
+    {
+      pathname: "Blog",
+      path: "/blog",
+    },
+  ];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -53,25 +83,6 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl" className="bg-white">
         <Toolbar disableGutters className="bg-white text-black">
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -84,6 +95,7 @@ function ResponsiveAppBar() {
               <MenuIcon />
             </IconButton>
             <Menu
+              className="md:hidden"
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -101,13 +113,7 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page.pathname} onClick={handleCloseNavMenu}>
-                  <Typography     href={page.path} textAlign="center" className="text-black">
-                    {page.pathname}
-                  </Typography>
-                </MenuItem>
-              ))}
+              {navItems}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -129,44 +135,16 @@ function ResponsiveAppBar() {
           >
             LOGO
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))} */}
-            {pages.map((page) => (
-              <MenuItem
-                className="hover:text-white text-blue-900"
-                key={page.pathname}
-                onClick={handleCloseNavMenu}
-              >
-                <Button
-                  autoFocus={false}
-                  focusRipple={false}
-                  disableRipple
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  className="my-2 block "
-                  href={page.path}
-                >
-                  {page.pathname}
-                </Button>
-              </MenuItem>
-            ))}
-          </Box>
+          <Box className="w-full xs:hidden lg:block">{navItems}</Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+          <Box className="ml-auto">
+            <Tooltip>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
+              className="w-28"
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}

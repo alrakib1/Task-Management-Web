@@ -1,8 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import Container from "../shared/Container/Container";
+import useAuth from "../../hooks/useAuth";
 
 const Banner = () => {
+
+const {user} = useAuth();
+
   return (
     <Container>
       <div className="flex flex-col md:flex-row sm: justify-center gap-5 xl:gap-10 items-center font-Montserrat">
@@ -14,7 +18,7 @@ const Banner = () => {
             <br className="hidden xl:block" />
             <br /> Task Manager
           </h1>
-          <p className="xs:text-sm sm:text-sm md:text-base lg:text-lg md:pt-2 xl:pt-5 w-9/12">
+          <p className="xs:text-sm sm:text-sm md:text-base lg:text-lg md:pt-2 xl:pt-5 md:w-9/12">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe
             itaque natus, adipisci quia voluptatem quod modi optio odio
             temporibus unde repellat, amet consequuntur tempora rem! Adipisci
@@ -27,7 +31,7 @@ const Banner = () => {
 
         {/* for image */}
         <div className="md:w-1/2">
-          <img src="../../../src/assets/images/banner.png" alt=""  className="w-full object-contain"/>
+          <img src="../../../src/assets/images/banner.png" alt="banner-image"  className="w-full object-contain"/>
         </div>
       </div>
     </Container>
