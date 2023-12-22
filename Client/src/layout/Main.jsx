@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <div>
       <Navbar />
-      <div className="min-h-[calc(100vh-160px)]">
+      <div className="min-h-[calc(100vh-160px)] ">
       <Toaster position="top-center" reverseOrder={false} />
         <Outlet />
       </div>

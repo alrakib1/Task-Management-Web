@@ -51,34 +51,33 @@ const Login = () => {
           />
         </div>
         {/* form */}
-        <div className="md:w-1/2 text-center border py-10 px-2 flex items-center justify-center">
-          <form onSubmit={handleLogin}>
-            <label htmlFor="">
-              Email :
-              <input
-                name="email"
-                type="text"
-                className="border border-blue-900 mb-5"
-              />
-            </label>
-            <br />
-            <label htmlFor="">
-              Password :
-              <input
-                name="password"
-                type="text"
-                className="border  border-blue-900"
-              />
-            </label>
-            <br />
-            <button
-              className="text-center btn border-blue-900 text-blue-900 font-semibold border px-2 py-1 mt-5"
-              type="submit"
-            >
-              Login
-            </button>
-          </form>
-        </div>
+        <div className="md:w-1/2 text-center border-2 border-blue-900 bg-slate-50 rounded-md py-10 px-2 flex items-center justify-center">
+  <form onSubmit={handleLogin} className="flex items-center justify-center flex-col text-blue-900 font-bold">
+    <div className="flex justify-around mb-4 w-full">
+      <label htmlFor="email" className="w-1/2">Email </label>
+      <input
+        name="email"
+        type="text"
+        className="border border-blue-900 ml-2 p-1"
+      />
+    </div>
+    <div className="flex justify-around mb-4 w-full">
+      <label htmlFor="password" className="w-1/2">Password </label>
+      <input
+        name="password"
+        type="password"
+        className="border border-blue-900 ml-2 p-1"
+      />
+    </div>
+    <button
+      className="text-center hover:bg-blue-900 hover:text-white rounded-md transition-transform font-semibold btn border-blue-900 text-blue-900 border px-2 py-1 mt-2"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>
+
       </div>
     </Container>
   );
