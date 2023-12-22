@@ -1,11 +1,25 @@
-
+import { FaFacebook, FaReddit, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import moment from 'moment';
 
 const Footer = () => {
-    return (
-        <div>
-            <h4>Footer</h4>
-        </div>
-    );
+  return (
+    <div className="h-24 text-[#CCCCCC] font-semibold bg-blue-900">
+      <div className="flex gap-4 h-[60px] items-center justify-center">
+        <Link to="www.facebook.com">
+          <FaFacebook className="text-3xl hover:text-white" />
+        </Link>
+
+        <Link to="www.reddit.com">
+          <FaReddit className="text-3xl hover:text-white" />
+        </Link>
+        <Link to="www.twitter.com">
+          <FaTwitter className="text-3xl hover:text-white" />
+        </Link>
+      </div>
+      <p className="text-center text-white"> &copy; Task Management { moment().year()}</p>
+    </div>
+  );
 };
 
 export default Footer;

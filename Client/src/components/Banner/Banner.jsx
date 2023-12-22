@@ -1,20 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Container from "../shared/Container/Container";
 import useAuth from "../../hooks/useAuth";
 
 const Banner = () => {
-
-const {user} = useAuth();
-const navigate = useNavigate();
-const handleExplore = ()=>{
-  if (user) {
-    navigate('/')
-  }else{
-    navigate('/login')
-  }
-
-}
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const handleExplore = () => {
+    if (user) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <Container>
@@ -28,19 +26,27 @@ const handleExplore = ()=>{
             <br /> Task Manager
           </h1>
           <p className="xs:text-sm sm:text-sm md:text-base lg:text-lg md:pt-2 xl:pt-5 md:w-9/12">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe
-            itaque natus, adipisci quia voluptatem quod modi optio odio
-            temporibus unde repellat, amet consequuntur tempora rem! Adipisci
-            aliquam omnis perspiciatis alias?
+            Unlock the power of seamless collaboration and productivity with
+            Task Manager. Our intuitive platform is designed to revolutionize the way
+            you manage tasks, whether you're working solo or with a team.
+            Experience the perfect blend of simplicity and functionality, all
+            wrapped in a visually appealing interface.
           </p>
-          
-          <button onClick={handleExplore} className="btn mt-6 text-blue-900 shadow-md shadow-gray-400/50 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 rounded-md hover:bg-blue-900 hover:text-white transition-transform ">Let's Explore</button>
-         
+
+          <button
+            onClick={handleExplore}
+            className="btn mt-6 text-blue-900 shadow-md shadow-gray-400/50 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 rounded-md hover:bg-blue-900 hover:text-white transition-transform "
+          >
+            Let's Explore
+          </button>
         </div>
 
         {/* for image */}
         <div className="md:w-1/2">
-          <img src="../../../src/assets/images/banner.png" alt="banner-image"  className="w-full object-contain"/>
+          <img
+            src="https://i.ibb.co/FnfDjkv/banner.png"
+            className="w-full object-contain"
+          />
         </div>
       </div>
     </Container>

@@ -1,14 +1,21 @@
+import PropTypes from "prop-types";
+import useAuth from "../hooks/useAuth";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
-import PropTypes from 'prop-types'
+const PrivateRoute = ({ children }) => {
+  const { loading, user } = useAuth();
 
-const PrivateRoute = ({children})=> {
-  return (
-  {children}
-  )
-}
+  return loading ? (
+    <div className="min-h-screen flex justify-center items-center">
+      <PacmanLoader color="#1E3A8A" loading size={20} />
+    </div>
+  ) : (
+    user && children
+  );
+};
 
 PrivateRoute.propTypes = {
-    children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
-export default PrivateRoute
+export default PrivateRoute;
