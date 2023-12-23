@@ -16,11 +16,12 @@ const Banner = () => {
 
   return (
     <Container>
-      <div className="flex flex-col md:flex-row sm: justify-center gap-5 xl:gap-10 items-center font-Montserrat">
+      <div className="">
+      <div className="flex flex-col md:flex-row sm: justify-center gap-5 pt-5 xl:gap-10 items-center font-Montserrat">
         {/* for tex */}
 
         <div className="md:w-1/2 space-y-4 md:space-y-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-blue-900 xl:leading-10 font-Permanent xs:w-10/12">
+          <h1 className="text-3xl md:text-4xl  lg:text-5xl xl:text-6xl font-semibold text-blue-900 xl:leading-10 font-Permanent xs:w-10/12">
             Welcome to
             <br className="hidden xl:block" />
             <br /> Task Manager
@@ -45,9 +46,10 @@ const Banner = () => {
         <div className="md:w-1/2">
           <img
             src="https://i.ibb.co/FnfDjkv/banner.png"
-            className="w-full object-contain"
+            className="object-contain"
           />
         </div>
+      </div>
       </div>
     </Container>
   );
