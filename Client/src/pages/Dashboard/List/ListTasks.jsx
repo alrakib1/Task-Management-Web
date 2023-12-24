@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Section from "../Section/Section";
 
-const ListTasks = ({ tasks, handleUpdate }) => {
+const ListTasks = ({ tasks, refetch}) => {
   // console.log(tasks);
 
   const todo = tasks.filter((task) => task.status === "to-do");
@@ -15,7 +15,7 @@ const ListTasks = ({ tasks, handleUpdate }) => {
   return (
     <div className="flex  flex-col md:flex-row flex-wrap px-3 gap-10">
       {statuses.map((stat, index) => (
-        <Section key={index} stat={stat} todo={todo} completed={completed} ongoing={ongoing}></Section>
+        <Section refetch={refetch} key={index} stat={stat} todo={todo} completed={completed} ongoing={ongoing}></Section>
         ))}
     </div>
   );
@@ -24,7 +24,7 @@ const ListTasks = ({ tasks, handleUpdate }) => {
 
 ListTasks.propTypes = {
   tasks: PropTypes.array,
-  handleUpdate: PropTypes.func,
+  refetch: PropTypes.func,
 };
 
 export default ListTasks;

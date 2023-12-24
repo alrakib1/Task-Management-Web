@@ -1,16 +1,18 @@
 
 import PropTypes from 'prop-types';
+import toast from 'react-hot-toast';
 import { IoRemoveCircleOutline } from "react-icons/io5";
 
 
-const Tasks = ({ task }) => {
+const Tasks = ({ task, refetch }) => {
     console.log(task)
 const  {_id, title } = task;
 
 const handleRemove = ()=>{
 console.log(_id)
 
-
+refetch();
+toast.success('Task has been removed', {icon:"💀" })
 }
 
     return (
@@ -27,7 +29,8 @@ console.log(_id)
   };
 
 Tasks.propTypes = {
-    task: PropTypes.object
+    task: PropTypes.object,
+    refetch: PropTypes.func
 };
 
 export default Tasks;

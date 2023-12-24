@@ -11,17 +11,14 @@ const AllTasks = () => {
 
     const axiosPublic = useAxiosPublic();
 
-  const {todos} = useTodos();
+  const {todos, refetch} = useTodos();
 //   console.log(todos)
 
-const handleUpdate = ()=>{
-    console.log('update to do')
-}
 
     return (
         <div className="flex flex-col items-center justify-center pt-3 gap-16">
             {/* <CreateTask tasks={tasks} setTasks={setTasks} ></CreateTask> */}
-            <ListTasks tasks={todos} handleUpdate={handleUpdate}></ListTasks>
+            <ListTasks tasks={todos}  refetch={refetch}></ListTasks>
         </div>
     );
 };
