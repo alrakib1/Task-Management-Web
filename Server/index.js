@@ -38,7 +38,9 @@ async function run() {
 
     app.post("/users", async (req, res) => {
       const user = req.body;
+      // console.log(user)
       const result = await usersCollection.insertOne(user);
+      // console.log(result)
       res
         .status(201)
         .send({ message: "user has been added", success: true, result });
@@ -162,7 +164,7 @@ async function run() {
 
 
 
-    // console.log("connected to MongoDB!");
+    console.log("connected to MongoDB!");
   } finally {
   }
 }
@@ -173,5 +175,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  // console.log(`server running on http://localhost:${port}`);
+  console.log(`server running on http://localhost:${port}`);
 });
