@@ -20,7 +20,7 @@ const UpdateTask = () => {
 
   // console.log(params?.id)
 
-    const {data={} }= useQuery({
+    const {data={},refetch:loaded }= useQuery({
         queryKey: ['to-tdo',params?.id], 
         queryFn: async()=>{
                 const res = await axiosPublic.get(`/edit/${params?.id}`)
@@ -56,6 +56,7 @@ const UpdateTask = () => {
       if (success) {
         success && toast.success("To do has been updated");
         refetch();
+        loaded();
         reset();
       } else {
         toast.error("Failed to update todo !!!");
