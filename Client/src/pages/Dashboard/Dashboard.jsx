@@ -19,6 +19,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 
 import { IoCreate } from "react-icons/io5";
 import { MdPreview } from "react-icons/md";
+import { Toaster } from "react-hot-toast";
 
 // main
 const drawerWidth = 240;
@@ -149,6 +150,7 @@ export default function PersistentDrawerLeft() {
         <Main open={open}>
           <DrawerHeader />
           <div className="font-Montserrat">
+          <Toaster position="top-center" reverseOrder={false} />
             <Outlet />
           </div>
         </Main>
