@@ -6,14 +6,14 @@ const Footer = () => {
   return (
     <div className="h-24 text-[#CCCCCC] font-semibold bg-blue-900">
       <div className="flex gap-4 h-[60px] items-center justify-center">
-        <Link to="www.facebook.com">
+        <Link to="https://www.facebook.com/">
           <FaFacebook className="text-3xl hover:text-white" />
         </Link>
 
-        <Link to="www.reddit.com">
+        <Link to="https://www.reddit.com/">
           <FaReddit className="text-3xl hover:text-white" />
         </Link>
-        <Link to="www.twitter.com">
+        <Link to="https://twitter.com/">
           <FaTwitter className="text-3xl hover:text-white" />
         </Link>
       </div>
