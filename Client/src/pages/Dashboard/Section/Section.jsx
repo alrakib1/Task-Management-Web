@@ -27,9 +27,9 @@ const axiosPublic = useAxiosPublic();
     }
 
     const response = await axiosPublic.patch(`/tasks/${id}`,updatedStatus);
-    console.log(response.data.result.modifiedCount)
+    // console.log(response.data.result.modifiedCount)
     if(response.data.result.modifiedCount >0){
-      toast.success("Task has been moved", { icon: "✅" });
+      toast.success(`Moved to ${stat}`, { icon: "✅" });
       refetch();
     }
   };

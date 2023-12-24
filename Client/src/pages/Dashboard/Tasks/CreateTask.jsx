@@ -6,11 +6,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import useAxiosPublic from "../../../api/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useTodos from "../../../api/useTodos";
 
 const CreateTask = () => {
   const axiosPublic = useAxiosPublic();
 
   const { user } = useAuth();
+
+  const {refetch} = useTodos();
 
   const { register, handleSubmit, reset, control } = useForm();
 
@@ -27,6 +30,7 @@ const CreateTask = () => {
       const success = response.data.result.insertedId;
       if (success) {
         success && toast.success("To do has been added");
+        refetch();
         reset();
       } else {
         toast.error("Failed to add todo !!!");
