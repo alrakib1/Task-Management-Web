@@ -39,3 +39,12 @@ It's a website where you can register and log in with your email or google accou
 - From dashboard user can simply update any do status simply by drag and dropping it to to-do, ongoing or completed section. It will update automatically.
 - User will only be able to see his todo list.
  - User will also be able to edit and update to-do.
+
+ ### Live website: 
+
+ https://taskmanagement-web.netlify.app/
+
+ 
+## Authors
+
+- [@alrakib1](https://www.github.com/alrakib1)
