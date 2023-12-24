@@ -125,12 +125,12 @@ export default function PersistentDrawerLeft() {
             )}
           </IconButton>
         </DrawerHeader>
-        <NavLink to="/dashboard">
+        {/* <NavLink to="/dashboard/update/:id">
           <List className="flex items-center gap-2 hover:bg-blue-900 hover:text-white border-t border-b border-blue-900 font-Montserrat">
             <IoCreate className="ml-3" /> Create Task
           </List>
-        </NavLink>
-        <NavLink to="/dashboard/all">
+        </NavLink> */}
+        <NavLink to="/dashboard">
           <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
             <MdPreview className="ml-3" /> View All Tasks
           </List>

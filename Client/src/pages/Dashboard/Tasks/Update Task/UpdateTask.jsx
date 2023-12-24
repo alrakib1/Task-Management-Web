@@ -3,12 +3,20 @@ import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import useAxiosPublic from "../../../api/useAxiosPublic";
-import useAuth from "../../../hooks/useAuth";
-import toast from "react-hot-toast";
-import useTodos from "../../../api/useTodos";
 
-const CreateTask = () => {
+
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../../../api/useAxiosPublic";
+import useAuth from "../../../../hooks/useAuth";
+import useTodos from "../../../../api/useTodos";
+
+
+const UpdateTask = () => {
+
+
+    
+
+
   const axiosPublic = useAxiosPublic();
 
   const { user } = useAuth();
@@ -21,10 +29,10 @@ const CreateTask = () => {
   const status = "to-do";
 
   const onSubmit = async (data) => {
-    const todoData = { ...data, email, status };
+    const updatedData = { ...data, email, status };
 
     try {
-      const response = await axiosPublic.post("/todo", todoData);
+      const response = await axiosPublic.post("/todo", updatedData);
       //   console.log(response.data);
 
       const success = response.data.result.insertedId;
@@ -52,6 +60,7 @@ const CreateTask = () => {
         <div>
           <h1 className="mb-2">Title</h1>
           <input
+          defaultValue={'rkai'}
             name="title"
             {...register("title", { required: true })}
             type="text"
@@ -98,16 +107,16 @@ const CreateTask = () => {
           ></textarea>
         </div>
         <button className="rounded-md text-white bg-[#004080] py-2 px-4 hover:scale-x-105 duration-300">
-          Create
+       Update
         </button>
       </form>
     </div>
   );
 };
 
-CreateTask.propTypes = {
+UpdateTask.propTypes = {
   tasks: PropTypes.array,
   setTasks: PropTypes.func,
 };
 
-export default CreateTask;
+export default UpdateTask;
