@@ -17,6 +17,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { FaRegUserCircle } from "react-icons/fa";
 
+
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Navbar = () => {
   };
 
   const navItems = (
-    <ul className="flex flex-wrap flex-row lg:justify-start gap-1 xs:justify-center xl:gap-5 items-center no-underline list-none px-2 ">
+    <ul className="flex flex-wrap flex-row lg:justify-center gap-1 xs:justify-center xl:gap-5 items-center no-underline list-none px-2 ">
       <NavLink to="/">
         {" "}
         <li className=" duration-300 hover:scale-x-110">Home</li>
@@ -113,6 +114,11 @@ const Navbar = () => {
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl" className="bg-white">
         <Toolbar disableGutters className="bg-white text-black">
+          <Link to="/">
+            <h1 className="font-Permanent text-xl font-medium text-blue-900">
+              Taskify
+            </h1>
+          </Link>
           <Box className="md:hidden">
             <IconButton
               size="large"
@@ -125,6 +131,7 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               className="md:hidden"
               id="menu-appbar"

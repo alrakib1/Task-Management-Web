@@ -39,10 +39,10 @@ const Profile = () => {
           </span>{" "}
         </p>
         <p>Total Todo : {todos.length}</p>
-        <p>To-do : {statusCounts && statusCounts["to-do"]}</p>
+        <p>To-do : {statusCounts && statusCounts["to-do"] || 0}</p>
 
-        <p>Ongoing : {statusCounts && statusCounts["ongoing"]} </p>
-        <p>Completed : {statusCounts && statusCounts["completed"]}</p>
+        <p>Ongoing : {statusCounts && statusCounts["ongoing"] ||0} </p>
+        <p>Completed : {statusCounts && statusCounts["completed"] || 0}</p>
         <div className="flex justify-between">
           <Link to="/dashboard">
             <button className="mt-5 border px-3 py-1 rounded-md bg-blue-900 text-white hover:scale-x-110 duration-300">
