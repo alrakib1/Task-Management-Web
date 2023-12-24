@@ -1,15 +1,29 @@
+/* eslint-disable react/no-unescaped-entities */
 import Lottie from "react-lottie-player";
 import animation from "../../assets/animations/loginanimation.json";
 import Container from "../../components/shared/Container/Container";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
+
+// icons
+import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import useAxiosPublic from "../../api/useAxiosPublic";
 
 const Signup = () => {
+  const [showPass, setShowPass] = useState(false);
+
   const navigate = useNavigate();
-  const { Signup, user } = useAuth();
+  const { signUp, user, loginWithGmail, updateUser } = useAuth();
+
+  const { register, handleSubmit } = useForm();
+
+  const axiosPublic = useAxiosPublic();
+
+  // TODO: change the navigate route after signup instead of useeffect
 
   useEffect(() => {
     if (user) {
@@ -17,85 +31,175 @@ const Signup = () => {
     }
   }, [user, navigate]);
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
+  const image_hosting_key = import.meta.env.VITE_IMGBB;
 
-    console.log(email, password, name,photo);
+  const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-    // Signup(email, password)
-    //   .then((result) => {
-    //     // console.log(result)
-    //     result && toast.success("Signup successful!");
-    //   })
-    //   .catch((error) => {
-    //     // console.log(error);
-      
-    //    error &&  toast.error("Please recheck and try again !!!!");
-    
-    //   });
+  const onSubmit = async (data) => {
+    const email = data.email;
+    const name = data.name;
+    const password = data.password;
+    const photo = data.photo[0];
+
+    const formData = new FormData();
+    formData.append("image", photo);
+
+    const response = await axiosPublic.post(image_hosting_api, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    const avatarImage = await response.data.data.display_url;
+
+    if (response.data.success) {
+      const userData = {
+        name,
+        email,
+        avatarImage,
+      };
+
+      signUp(email, password)
+        .then(async () => {
+          const res = await axiosPublic.post("/users", userData);
+          const newUser = res.data.success;
+
+          newUser && toast.success("Signup successful!");
+
+          updateUser(name, avatarImage)
+            .then(() => {
+              // console.log("profile updated");
+            })
+            .catch(() => {
+              // console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+          error.code === 'auth/email-already-in-use'&& toast.error("User already exists !!!");
+          error.code === 'auth/weak-password'&& toast.error("Password Must be 6 characters !!!");
+
+
+        });
+    }
   };
+
+  const handleGoogleSignup = () => {
+    loginWithGmail()
+      .then((result) => {
+        const user = result.user;
+        user && toast.success("Signup successful!");
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <Container>
       <Helmet>
         <title>Task Manager | Signup</title>
       </Helmet>
-      {/* <div className="flex flex-col md:flex-row justify-center items-center">
-  
-        <div className="md:w-1/2 ">
-          <Lottie
-            loop
-            animationData={animation}
-            play
-            className="object-contain"
-          />
-        </div>
-    
-        <div className="md:w-1/2  text-center border-2 border-blue-900 bg-slate-50 rounded-md py-10 px-2 flex items-center justify-center">
-  <form onSubmit={handleSignup} className="flex  items-center justify-center flex-col text-blue-900 font-bold">
-    <div className="flex justify-around mb-4 w-full">
-      <label htmlFor="name" className="w-1/2">Name </label>
-      <input
-        name="name"
-        type="text"
-        className="border border-blue-900 ml-2 p-1"
-      />
-    </div>
-    <div className="flex justify-around mb-4 w-full">
-      <label htmlFor="photo" className="w-1/2">Photo </label>
-      <input type="file" name="photo" id="" accept="image/*"/>
-    </div>
-    <div className="flex justify-around mb-4 w-full">
-      <label htmlFor="email" className="w-1/2">Email </label>
-      <input
-        name="email"
-        type="text"
-        className="border border-blue-900 ml-2 p-1"
-      />
-    </div>
-    <div className="flex justify-around mb-4 w-full">
-      <label htmlFor="password" className="w-1/2">Password </label>
-      <input
-        name="password"
-        type="password"
-        className="border border-blue-900 ml-2 p-1"
-      />
-    </div>
-    <button
-      className="text-center hover:bg-blue-900 hover:text-white rounded-md transition-transform font-semibold btn border-blue-900 text-blue-900 border px-2 py-1 mt-2"
-      type="submit"
-    >
-      Signup
-    </button>
-  </form>
-</div>
 
-      </div> */}
       <div>
-        signup
+        <div className="bg-gray-50 font-Montserrat">
+          {/* Signup container */}
+
+          <div className="bg-gray-100 flex  flex-row-reverse rounded-2xl shadow-lg max-w-3xl xs:py-4 py-0 sm:p-5 items-center">
+            {/* form */}
+            <div className="md:w-1/2 px-8">
+              <h1 className="font-bold text-2xl text-blue-900 text-center">
+                Signup
+              </h1>
+              <p className="text-sm mt-4 text-center text-blue-900 font-medium">
+                New here ? Signup easily
+              </p>
+              <form
+                className="flex flex-col gap-4"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <input
+                  className="p-2 mt-8 border rounded-xl"
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  {...register("name", { required: true })}
+                />
+                <input
+                  className="p-2  border file:bg-white file:text-blue-900 file:font-medium font-medium file:border-gray-500 file:border file:rounded-xl rounded-xl"
+                  type="file"
+                  name="photo"
+                  {...register("photo", { required: true })}
+                />
+                <input
+                  className="p-2  border rounded-xl"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  {...register("email", { required: true })}
+                />
+                <div className="relative">
+                  <input
+                    className="p-2 border rounded-xl w-full"
+                    type={showPass ? "text" : "password"}
+                    name="password"
+                    id=""
+                    placeholder="Password"
+                    {...register("password", { required: true })}
+                  />
+                  {showPass ? (
+                    <FaRegEyeSlash
+                      className="absolute top-1/2 right-3 cursor-pointer -translate-y-1/2 text-gray-500"
+                      onClick={() => setShowPass((prev) => setShowPass(!prev))}
+                    />
+                  ) : (
+                    <FaRegEye
+                      className="absolute top-1/2 right-3 cursor-pointer -translate-y-1/2 text-gray-500"
+                      onClick={() => setShowPass((prev) => setShowPass(!prev))}
+                    />
+                  )}
+                </div>
+                <button className="rounded-xl text-white bg-[#004080] py-2 hover:scale-105 duration-300">
+                  Signup
+                </button>
+              </form>
+              <div className="mt-10 grid grid-cols-3 text-gray-500 items-center">
+                <hr className="border-gray-500" />
+                <p className="text-center text-sm">OR</p>
+                <hr className="border-gray-500" />
+              </div>
+              <div>
+                <button
+                  onClick={() => handleGoogleSignup()}
+                  className="border bg-white py-2 w-full rounded-xl mt-5 flex justify-center items-center hover:scale-105 duration-300 hover:bg-blue-900 hover:text-white"
+                >
+                  <FaGoogle className="w-[25px] mr-1 text-sm" />
+                  Signup in with google
+                </button>
+              </div>
+
+              <div className="text-xs mt-3 flex justify-between items-center">
+                <p>Already have an account ....</p>
+                <Link to="/login">
+                  <button className="py-2 px-5 bg-white border rounded-xl hover:bg-blue-900 hover:text-white hover:scale-110 duration-300">
+                    Login
+                  </button>
+                </Link>
+              </div>
+            </div>
+
+            {/* image */}
+
+            <div className="md:w-1/2  sm:block hidden">
+              <Lottie
+                loop
+                animationData={animation}
+                play
+                className="rounded-2xl h-full object-contain bg-[#ADD8E6]"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </Container>
   );

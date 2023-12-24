@@ -147,7 +147,7 @@ const Navbar = () => {
                 {user ? (
                   <Avatar alt="Remy Sharp" src={user?.photoURL} />
                 ) : (
-                  <FaRegUserCircle className=" text-blue-900" />
+                  <FaRegUserCircle className=" text-blue-900 sm:w-6 sm:h-6 lg:w-9 lg:h-9" />
                 )}
               </IconButton>
             </Tooltip>

@@ -20,6 +20,9 @@ const Login = () => {
 
   const { register, handleSubmit } = useForm();
 
+
+    // TODO: change the navigate route after login instead of useeffect
+
   useEffect(() => {
     if (user) {
       return navigate("/");
@@ -51,7 +54,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        error && toast.error("Something went wrong. Please try again !!!!");
+      
       });
   };
 

@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <div>
       <Navbar />
-      <div className="min-h-[calc(100vh-160px)] flex justify-center items-center pt-10">
+      <div className="min-h-[calc(100vh-160px)] flex justify-center items-center pt-5">
       <Toaster position="top-center" reverseOrder={false} />
         <Outlet />
       </div>
