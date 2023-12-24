@@ -74,7 +74,7 @@ const Signup = () => {
             });
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
           error.code === 'auth/email-already-in-use'&& toast.error("User already exists !!!");
           error.code === 'auth/weak-password'&& toast.error("Password Must be 6 characters !!!");
 
@@ -88,10 +88,10 @@ const Signup = () => {
       .then((result) => {
         const user = result.user;
         user && toast.success("Signup successful!");
-        console.log(user);
+        // console.log(user);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        // console.log(error);
       });
   };
 

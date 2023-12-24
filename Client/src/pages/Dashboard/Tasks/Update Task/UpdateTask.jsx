@@ -62,7 +62,7 @@ const UpdateTask = () => {
         toast.error("Failed to update todo !!!");
       }
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       toast.error("An error has occurred !!!");
     }
   };

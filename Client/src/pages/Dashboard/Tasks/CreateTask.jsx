@@ -36,7 +36,7 @@ const CreateTask = () => {
         toast.error("Failed to add todo !!!");
       }
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       toast.error("An error has occurred !!!");
     }
   };

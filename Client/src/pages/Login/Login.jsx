@@ -50,10 +50,10 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         user && toast.success("Login successful!");
-        console.log(user)
+        // console.log(user)
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        // console.log(error);
       
       });
   };
