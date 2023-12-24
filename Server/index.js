@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
+const { ObjectId } = require("mongodb");
 const uri = process.env.url;
 
 const client = new MongoClient(uri, {
@@ -63,23 +64,34 @@ async function run() {
 
     app.get("/usersTodo", async (req, res) => {
       const user = req.query;
-      let query ={}
-      if(user?.email) {
-        query = {email: user?.email}
+      let query = {};
+      if (user?.email) {
+        query = { email: user?.email };
       }
 
-      
       const result = await todoCollection.find(query).toArray();
-      console.log(result)
+      // console.log(result)
       res.status(200).send(result);
     });
 
+    app.patch("/tasks/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      console.log(req.body);
 
+      const update = req.body;
+      // console.log(update)
 
+      const updateDocument = {
+        $set: {
+          status: req.body.status,
+        },
+      };
 
+      const result = await todoCollection.updateOne(filter, updateDocument);
 
-
-
+      res.send({ message: "Task updated successfully", result });
+    });
 
     console.log("connected to MongoDB!");
   } finally {

@@ -3,6 +3,7 @@ import Header from "../Tasks/Header";
 import Tasks from "../Tasks/Tasks";
 import { useDrop } from "react-dnd";
 import useAxiosPublic from "../../../api/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const Section = ({ stat, todo, completed, ongoing, refetch }) => {
 
@@ -19,9 +20,18 @@ const axiosPublic = useAxiosPublic();
   }));
 
   const addItemToSection = async(id) => {
-    console.log("dropped ", id, stat);
+    // console.log("dropped ", id, stat);
 
-    const response = await axiosPublic.patch('/tasks')
+    const updatedStatus = {
+      status: stat
+    }
+
+    const response = await axiosPublic.patch(`/tasks/${id}`,updatedStatus);
+    console.log(response.data.result.modifiedCount)
+    if(response.data.result.modifiedCount >0){
+      toast.success("Task has been moved", { icon: "✅" });
+      refetch();
+    }
   };
 
   let text = "todo";

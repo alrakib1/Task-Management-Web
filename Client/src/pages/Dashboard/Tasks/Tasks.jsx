@@ -8,15 +8,15 @@ const Tasks = ({ task, refetch }) => {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "task",
-    item: {id: task._id},
+    item: { id: task._id },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
   }));
-  console.log(isDragging);
+
 
   const handleRemove = () => {
-    console.log(_id);
+    // console.log(_id);
 
     refetch();
     toast.success("Task has been removed", { icon: "💀" });
@@ -25,7 +25,9 @@ const Tasks = ({ task, refetch }) => {
   return (
     <div
       ref={drag}
-      className={`relative p-4 mt-8 shadow-md rounded-md cursor-grab ${isDragging ? "opacity-25":"opacity-100"}`}
+      className={`relative p-4 mt-8 shadow-md rounded-md cursor-grab ${
+        isDragging ? "opacity-25" : "opacity-100"
+      }`}
     >
       <p>{title}</p>
       <button
