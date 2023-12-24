@@ -23,6 +23,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
 
 
+
   const auth = getAuth(app);
 
   const [loading, setLoading] = useState(true);
