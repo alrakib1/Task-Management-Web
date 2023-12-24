@@ -1,17 +1,32 @@
 import PropTypes from "prop-types";
 
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller} from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {useParams} from 'react-router-dom'
 
 
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../../api/useAxiosPublic";
-import useAuth from "../../../../hooks/useAuth";
+
 import useTodos from "../../../../api/useTodos";
+import { useQuery } from "@tanstack/react-query";
+
 
 
 const UpdateTask = () => {
+
+  const params = useParams();
+
+  // console.log(params?.id)
+
+    const {data={} }= useQuery({
+        queryKey: ['to-tdo',params?.id], 
+        queryFn: async()=>{
+                const res = await axiosPublic.get(`/edit/${params?.id}`)
+                return res.data;
+        }
+    })
 
 
     
@@ -19,29 +34,28 @@ const UpdateTask = () => {
 
   const axiosPublic = useAxiosPublic();
 
-  const { user } = useAuth();
+
 
   const {refetch} = useTodos();
 
   const { register, handleSubmit, reset, control } = useForm();
 
-  const email = user?.email;
-  const status = "to-do";
 
   const onSubmit = async (data) => {
-    const updatedData = { ...data, email, status };
+    const updatedData = data;
+    // console.log(data)
 
     try {
-      const response = await axiosPublic.post("/todo", updatedData);
-      //   console.log(response.data);
+      const response = await axiosPublic.patch(`/edit/${params?.id}`, updatedData);
+        // console.log(response.data);
 
-      const success = response.data.result.insertedId;
+      const success = response.data.result.modifiedCount;
       if (success) {
-        success && toast.success("To do has been added");
+        success && toast.success("To do has been updated");
         refetch();
         reset();
       } else {
-        toast.error("Failed to add todo !!!");
+        toast.error("Failed to update todo !!!");
       }
     } catch (error) {
       console.log("error", error);
@@ -49,7 +63,7 @@ const UpdateTask = () => {
     }
   };
 
-  // console.log(email)
+
 
   return (
     <div className="min-h-[calc(100vh-150px)] flex justify-center items-center">
@@ -60,7 +74,7 @@ const UpdateTask = () => {
         <div>
           <h1 className="mb-2">Title</h1>
           <input
-          defaultValue={'rkai'}
+          defaultValue={data?.result?.title}
             name="title"
             {...register("title", { required: true })}
             type="text"
@@ -70,6 +84,7 @@ const UpdateTask = () => {
         <div>
           <h1 className="text-base mb-2">Priority</h1>
           <select
+          selected={data?.result?.priority}
             className="border px-2 border-slate-400 bg-white rounded-md py-2 w-full"
             {...register("priority", { required: true })}
           >

@@ -11,7 +11,7 @@ const useTodos = ()=>{
 const axiosPublic = useAxiosPublic();
 
 const {data:todos=[],refetch} = useQuery({
-    queryKey: ['todos'],
+    queryKey: ['todos', user.email],
     queryFn : async()=>{
       const res = await  axiosPublic.get(`/usersTodo?email=${user?.email}`);
       return res.data;

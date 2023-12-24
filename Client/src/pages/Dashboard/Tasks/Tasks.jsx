@@ -36,13 +36,13 @@ const Tasks = ({ task, refetch }) => {
   return (
     <div
       ref={drag}
-      className={` p-4 mt-8 shadow-md rounded-md cursor-grab ${
+      className={`flex h-40 flex-col gap-5 overflow-hidden  p-4 mt-5 shadow-md rounded-md cursor-grab ${
         isDragging ? "opacity-25" : "opacity-100"
       }`}
     >
-      <p>{title}</p>
+      <p className="h-20">{title}</p>
       <p className="text-sm">priority: {priority}</p>
-      <div className="mt-5 flex justify-around items-center">
+      <div className="flex justify-around items-center mt-auto">
         <button
           className=" bottom-1 right-1 text-slate-400 hover:text-blue-900"
           onClick={() => handleRemove()}
