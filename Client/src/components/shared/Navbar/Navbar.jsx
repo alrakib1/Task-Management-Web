@@ -15,19 +15,21 @@ import "./Nav.css";
 import useAuth from "../../../hooks/useAuth";
 import { Link, NavLink } from "react-router-dom";
 
-function ResponsiveAppBar() {
+import { FaRegUserCircle } from "react-icons/fa";
+
+const Navbar = () => {
   const { user, logOut } = useAuth();
 
   const navItems = (
     <ul className="flex flex-wrap flex-row lg:justify-start gap-1 xs:justify-center xl:gap-5 items-center no-underline list-none px-2 ">
       <NavLink to="/">
         {" "}
-        <li>Home</li>
+        <li className=" duration-300 hover:scale-x-110">Home</li>
       </NavLink>
       {user && (
         <NavLink to="/dashboard">
           {" "}
-          <li>Dashboard</li>
+          <li className=" duration-300 hover:scale-x-110">Dashboard</li>
         </NavLink>
       )}
       {user ? (
@@ -35,7 +37,9 @@ function ResponsiveAppBar() {
       ) : (
         <NavLink to="/signup">
           {" "}
-          <li className="inline-block">Signup</li>
+          <li className="inline-block duration-300 hover:scale-x-110">
+            Signup
+          </li>
         </NavLink>
       )}
       {user ? (
@@ -43,12 +47,12 @@ function ResponsiveAppBar() {
       ) : (
         <NavLink to="/login">
           {" "}
-          <li className="block">Login</li>
+          <li className="block duration-300 hover:scale-x-110">Login</li>
         </NavLink>
       )}
-   <NavLink to='/about'>
-   <li>About</li>
-   </NavLink>
+      <NavLink to="/about">
+        <li className=" duration-300 hover:scale-x-110">About</li>
+      </NavLink>
       {user && (
         <li className="cursor-pointer" onClick={() => logOut()}>
           Logout
@@ -103,7 +107,7 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl" className="bg-white">
         <Toolbar disableGutters className="bg-white text-black">
-          <Box  className="md:hidden">
+          <Box className="md:hidden">
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -111,7 +115,7 @@ function ResponsiveAppBar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-              sx={{display:{xs:'block',md:'none'}}}
+              sx={{ display: { xs: "block", md: "none" } }}
             >
               <MenuIcon />
             </IconButton>
@@ -130,7 +134,6 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-            
             >
               {navItems}
             </Menu>
@@ -139,17 +142,13 @@ function ResponsiveAppBar() {
           <Box className="w-full xs:hidden md:block">{navItems}</Box>
 
           <Box className="ml-auto text-black hover:text-black">
-            <Tooltip >
-              <IconButton
-                onClick={handleOpenUserMenu}
-                sx={{ p: 0 }}
-              
-              >
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/2.jpg"
-                 
-                />
+            <Tooltip>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                {user ? (
+                  <Avatar alt="Remy Sharp" src={user?.photoURL} />
+                ) : (
+                  <FaRegUserCircle className=" text-blue-900" />
+                )}
               </IconButton>
             </Tooltip>
             <Menu
@@ -176,5 +175,5 @@ function ResponsiveAppBar() {
       </Container>
     </AppBar>
   );
-}
-export default ResponsiveAppBar;
+};
+export default Navbar;
