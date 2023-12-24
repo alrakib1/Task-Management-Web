@@ -24,7 +24,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const {currentUser} = useCurrentUser();
-  console.log(currentUser)
+  // console.log(currentUser)
 
 
   const handleLogOut = () => {
