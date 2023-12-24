@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import UpdateTask from "../pages/Dashboard/Tasks/Update Task/UpdateTask";
 import PrivateRoute from "./PrivateRoute";
 import AllTasks from "../pages/Dashboard/AllTasks/AllTasks";
+import TaskDetails from "../pages/Dashboard/Tasks/Task Details/TaskDetails";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         path: "/dashboard/edit/:id",
         element: <UpdateTask/>,
       },
+      {
+        path: '/dashboard/details/:id',
+        element: <TaskDetails></TaskDetails>
+      }
      
     ],
   },

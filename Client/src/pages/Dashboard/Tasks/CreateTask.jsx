@@ -47,7 +47,7 @@ const CreateTask = () => {
     <div className="min-h-[calc(100vh-150px)] flex justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-2 border p-5 rounded-md bg-slate-100 shadow-sm w-full"
+        className="flex flex-col gap-2 border p-5 rounded-md bg-slate-100 shadow-lg w-full"
       >
         <div>
           <h1 className="mb-2">Title</h1>

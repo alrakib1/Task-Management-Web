@@ -17,9 +17,11 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 
 // icons
 
-import { IoCreate } from "react-icons/io5";
+
 import { MdPreview } from "react-icons/md";
 import { Toaster } from "react-hot-toast";
+import { Avatar } from "@mui/material";
+import useAuth from "../../hooks/useAuth";
 
 // main
 const drawerWidth = 240;
@@ -47,6 +49,11 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 );
 
 const AppBar = styled(MuiAppBar, {
+
+
+
+
+
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   transition: theme.transitions.create(["margin", "width"], {
@@ -83,6 +90,10 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+
+
+  const {user} = useAuth();
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -125,11 +136,12 @@ export default function PersistentDrawerLeft() {
             )}
           </IconButton>
         </DrawerHeader>
-        {/* <NavLink to="/dashboard/update/:id">
-          <List className="flex items-center gap-2 hover:bg-blue-900 hover:text-white border-t border-b border-blue-900 font-Montserrat">
-            <IoCreate className="ml-3" /> Create Task
-          </List>
-        </NavLink> */}
+              
+
+              <List className="flex justify-center items-center " sx={{marginBottom:'20px', height:'100px', width:'100px', marginLeft: "auto", marginRight:"auto"}}>
+              <Avatar sx={{width:'100px',height: '100px'}} alt="User Photo" src={user?.PhotoURL} />
+              </List>
+
         <NavLink to="/dashboard">
           <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
             <MdPreview className="ml-3" /> View All Tasks

@@ -24,25 +24,28 @@ const UpdateTask = () => {
         queryKey: ['to-tdo',params?.id], 
         queryFn: async()=>{
                 const res = await axiosPublic.get(`/edit/${params?.id}`)
-                return res.data;
+                return res.data.result;
         }
     })
 
 
     
+    
+    const axiosPublic = useAxiosPublic();
+    
+    
+    
+    const {refetch} = useTodos();
+    
+    const { register, handleSubmit, reset, control } = useForm();
+    
+    const status = data?.status;
+    // console.log(status)
+    
+    const onSubmit = async (data) => {
+      
 
-
-  const axiosPublic = useAxiosPublic();
-
-
-
-  const {refetch} = useTodos();
-
-  const { register, handleSubmit, reset, control } = useForm();
-
-
-  const onSubmit = async (data) => {
-    const updatedData = data;
+    const updatedData = {...data,status};
     // console.log(data)
 
     try {
@@ -74,7 +77,7 @@ const UpdateTask = () => {
         <div>
           <h1 className="mb-2">Title</h1>
           <input
-          defaultValue={data?.result?.title}
+          defaultValue={data?.title}
             name="title"
             {...register("title", { required: true })}
             type="text"
@@ -84,7 +87,7 @@ const UpdateTask = () => {
         <div>
           <h1 className="text-base mb-2">Priority</h1>
           <select
-          selected={data?.result?.priority}
+          selected={data?.priority}
             className="border px-2 border-slate-400 bg-white rounded-md py-2 w-full"
             {...register("priority", { required: true })}
           >
