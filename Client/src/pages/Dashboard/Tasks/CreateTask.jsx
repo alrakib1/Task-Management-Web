@@ -7,7 +7,7 @@ import useAxiosPublic from "../../../api/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 
-const CreateTask = ({ tasks, setTasks }) => {
+const CreateTask = () => {
   const axiosPublic = useAxiosPublic();
 
   const { user } = useAuth();
@@ -15,13 +15,14 @@ const CreateTask = ({ tasks, setTasks }) => {
   const { register, handleSubmit, reset, control } = useForm();
 
   const email = user?.email;
+  const status = "to-do";
 
   const onSubmit = async (data) => {
-    const totoData = { ...data, email };
+    const totoData = { ...data, email, status };
 
     try {
       const response = await axiosPublic.post("/todo", totoData);
-    //   console.log(response.data);
+      //   console.log(response.data);
 
       const success = response.data.result.insertedId;
       if (success) {

@@ -130,21 +130,12 @@ export default function PersistentDrawerLeft() {
             <IoCreate className="ml-3" /> Create Task
           </List>
         </NavLink>
-        <NavLink to="/dashboard/view-to-do">
+        <NavLink to="/dashboard/all">
           <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
-            <MdPreview className="ml-3" /> View To-Do List
+            <MdPreview className="ml-3" /> View All Tasks
           </List>
         </NavLink>
-        <NavLink to="/dashboard/view-ongoing">
-          <List className="flex   items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
-            <IoCreate className="ml-3" /> View Ongoing List
-          </List>
-        </NavLink>
-        <NavLink to="/dashboard/view-completed">
-          <List className="flex p-3 items-center gap-2 hover:bg-blue-900 hover:text-white border-b border-blue-900 font-Montserrat">
-            <IoCreate className="ml-3" /> View Completed List
-          </List>
-        </NavLink>
+        
       </Drawer>
       <Container>
         <Main open={open}>
