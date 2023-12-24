@@ -11,6 +11,7 @@ import useAxiosPublic from "../../../../api/useAxiosPublic";
 
 import useTodos from "../../../../api/useTodos";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -71,6 +72,9 @@ const UpdateTask = () => {
 
   return (
     <div className="min-h-[calc(100vh-150px)] flex justify-center items-center">
+      <Helmet>
+        <title>Task Manager | Update</title>
+      </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-2 border p-5 rounded-md bg-slate-100 shadow-sm w-full"

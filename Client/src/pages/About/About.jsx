@@ -1,9 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import { Helmet } from "react-helmet-async";
+
 
 const About = () => {
     return (
         <div className="about-container mx-auto max-w-screen-lg p-4 font-Montserrat">
+          <Helmet>
+        <title>Task Manager | About</title>
+      </Helmet>
         <h1 className="text-3xl font-bold mb-4">About Taskify</h1>
         <p className="mb-4">
           Welcome to Taskify, your go-to task management application! Taskify is designed to help you stay organized

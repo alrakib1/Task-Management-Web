@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import useAxiosPublic from "../../../../api/useAxiosPublic";
 import { MdEdit } from "react-icons/md";
-
+import { Helmet } from "react-helmet-async";
 
 const TaskDetails = () => {
   const params = useParams();
@@ -17,12 +17,13 @@ const TaskDetails = () => {
     },
   });
 
-
-
   const { _id } = data;
 
   return (
     <div className="min-h-[calc(100vh-160px)] flex justify-center items-center w-full">
+      <Helmet>
+        <title>Task Manager | Details</title>
+      </Helmet>
       <div className="bg-slate-100 rounded-md shadow-lg w-full mx-auto px-10 py-10 space-y-4">
         <h1 className="text-xl font-semibold">Title: {data.title}</h1>
         <p className="text-base font-medium">Priority: {data.priority}</p>
@@ -35,7 +36,6 @@ const TaskDetails = () => {
               <MdEdit className="cursor-pointer" />
             </button>
           </Link>
-         
         </div>
       </div>
     </div>

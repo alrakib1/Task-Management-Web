@@ -29,7 +29,7 @@ const Signup = () => {
     if (user) {
       return navigate("/");
     }
-  }, [user, navigate]);
+  }, [navigate]);
 
   const image_hosting_key = import.meta.env.VITE_IMGBB;
 
@@ -59,15 +59,16 @@ const Signup = () => {
       };
 
       signUp(email, password)
-        .then(async () => {
-          const res = await axiosPublic.post("/users", userData);
-          const newUser = res.data.success;
+        .then((result) => {
+          const newUser = result.user;
+          axiosPublic.post("/users", userData);
 
           newUser && toast.success("Signup successful!");
 
           updateUser(name, avatarImage)
             .then(() => {
               // console.log("profile updated");
+              navigate("/");
             })
             .catch(() => {
               // console.log(error);
@@ -75,10 +76,10 @@ const Signup = () => {
         })
         .catch((error) => {
           // console.log(error);
-          error.code === 'auth/email-already-in-use'&& toast.error("User already exists !!!");
-          error.code === 'auth/weak-password'&& toast.error("Password Must be 6 characters !!!");
-
-
+          error.code === "auth/email-already-in-use" &&
+            toast.error("User already exists !!!");
+          error.code === "auth/weak-password" &&
+            toast.error("Password Must be 6 characters !!!");
         });
     }
   };
@@ -89,6 +90,7 @@ const Signup = () => {
         const newUser = result.user;
         newUser && toast.success("Signup successful!");
         // console.log(user);
+        navigate("/");
       })
       .catch(() => {
         // console.log(error);

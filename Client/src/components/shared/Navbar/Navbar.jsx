@@ -24,6 +24,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const {currentUser} = useCurrentUser();
+  console.log(currentUser)
 
 
   const handleLogOut = () => {
@@ -162,7 +163,7 @@ const Navbar = () => {
             <Tooltip>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {user ? (
-                  <Avatar alt="user-avatar-image" src={ currentUser[0]?.avatarImage || user?.photoURL} />
+                  <Avatar alt="user-avatar-image" src={ currentUser.length === 0 ? user?.photoURL: currentUser[0]?.avatarImage} />
                 ) : (
                   <FaRegUserCircle className=" text-blue-900 sm:w-6 sm:h-6 lg:w-9 lg:h-9" />
                 )}

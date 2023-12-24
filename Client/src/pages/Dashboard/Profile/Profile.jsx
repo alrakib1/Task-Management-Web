@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import useTodos from "../../../api/useTodos";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
   const { user, logOut } = useAuth();
@@ -23,6 +24,9 @@ const Profile = () => {
 
   return (
     <div className="min-h-[calc(100vh-160px)] flex justify-center items-center w-full">
+      <Helmet>
+        <title>Task Manager | Profile</title>
+      </Helmet>
       <div className="bg-slate-100 xs:w-[300px] md:w-[700px] rounded-md shadow-lg mx-auto px-10 py-10 space-y-4 font-medium">
         <h1 className="mb-10 text-center text-2xl font-bold font-Permanent text-blue-900 ">
           Welcome

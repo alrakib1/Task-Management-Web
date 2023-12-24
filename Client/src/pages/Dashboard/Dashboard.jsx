@@ -14,14 +14,15 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import Container from "../../components/shared/Container/Container";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 
 // icons
-
+import { CiLogout } from "react-icons/ci";
 import { MdPreview } from "react-icons/md";
 import { Toaster } from "react-hot-toast";
 import { Avatar } from "@mui/material";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 // main
 const drawerWidth = 240;
@@ -85,11 +86,21 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   // console.log(user);
+
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut();
+    navigate("/");
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
+      <Helmet>
+        <title>Task Manager | Dashboard</title>
+      </Helmet>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ backgroundColor: "#1E3A8A" }}>
         <Toolbar>
@@ -146,19 +157,25 @@ export default function PersistentDrawerLeft() {
             src={user.photoURL}
           />
         </List>
-<div className="flex flex-col space-y-4">
-  
-<NavLink to="/dashboard">
-          <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
-            <MdPreview className="ml-3" /> View All Tasks
+        <div className="flex flex-col space-y-4">
+          <NavLink to="/dashboard">
+            <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
+              <MdPreview className="ml-3" /> View All Tasks
+            </List>
+          </NavLink>
+          <NavLink to="/dashboard/profile">
+            <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
+              <FaRegUserCircle className="ml-3" /> Profile
+            </List>
+          </NavLink>
+
+          <List
+            className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat"
+            onClick={handleLogOut}
+          >
+            <CiLogout className="ml-3" /> Logout
           </List>
-        </NavLink>
-        <NavLink to="/dashboard/profile">
-          <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
-            <FaRegUserCircle className="ml-3" /> Profile
-          </List>
-        </NavLink>
-</div>
+        </div>
       </Drawer>
       <Container>
         <Main open={open}>
