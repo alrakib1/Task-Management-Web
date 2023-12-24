@@ -71,7 +71,7 @@ const Navbar = () => {
     <ul>
       {user ? (
         <>
-          <Link to="/profile">
+          <Link to="/dashboard/profile">
             <li>Profile</li>
           </Link>
           <li className="cursor-pointer" onClick={handleLogOut}>
