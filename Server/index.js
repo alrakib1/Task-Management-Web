@@ -98,7 +98,7 @@ async function run() {
       res.send({ message: "Task updated successfully", result });
     });
 
-    // delete todo
+    // delete one todo
 
     app.delete("/tasks/:id", async (req, res) => {
       const id = req.params.id;
@@ -115,7 +115,7 @@ async function run() {
 
     app.get("/edit/:id", async (req, res) => {
       const id = req.params.id;
-      console.log(id);
+      // console.log(id);
       const filter = { _id: new ObjectId(id) };
       const result = await todoCollection.findOne(filter);
       res.status(200).send({ message: "got it", success: true, result });
@@ -135,6 +135,7 @@ async function run() {
           priority: update.priority,
           deadline: update.deadline,
           description: update.description,
+         status: update.status
         },
       };
 
