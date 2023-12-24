@@ -86,8 +86,8 @@ const Signup = () => {
   const handleGoogleSignup = () => {
     loginWithGmail()
       .then((result) => {
-        const user = result.user;
-        user && toast.success("Signup successful!");
+        const newUser = result.user;
+        newUser && toast.success("Signup successful!");
         // console.log(user);
       })
       .catch(() => {
