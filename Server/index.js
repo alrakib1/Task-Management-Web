@@ -43,7 +43,7 @@ async function run() {
 
     app.get("/users", async (req, res) => {
       const result = await usersCollection.find().toArray();
-      res.send(result);
+      res.status(200).send(result);
     });
 
     // post todo
@@ -57,9 +57,26 @@ async function run() {
     });
 
     app.get("/todo", async (req, res) => {
-      const result = await todoCollection.find().toString();
-      res.send(result);
+      const result = await todoCollection.find().toArray();
+      res.status(200).send(result);
     });
+
+    app.get("/usersTodo", async (req, res) => {
+      const user = req.query;
+      let query ={}
+      if(user?.email) {
+        query = {email: user?.email}
+      }
+
+      
+      const result = await todoCollection.find(query).toArray();
+      console.log(result)
+      res.status(200).send(result);
+    });
+
+
+
+
 
 
 

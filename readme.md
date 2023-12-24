@@ -20,7 +20,7 @@ and type the following command inside client and sever folder separately :
 
 
 
-# About : Task Management Website
+# About : Taskify
 
 It's a website where you can register and log in with your email or google account.
 
@@ -28,5 +28,9 @@ It's a website where you can register and log in with your email or google accou
 ## Features
 
 - If you click on explore more, it will navigate you to login page. After successful log in user will be redirected to the home page and will be able to see a toast on the top of the website.
+
+- A person won't be able to create multiple account with same email.
+- On signup page anyone will be able to create account with their name, email, password, photo. 
+- React hook from has been used on both login and signup page.
 
 - If use do any 
