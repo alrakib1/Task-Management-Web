@@ -34,6 +34,8 @@ async function run() {
 
     await client.db("admin").command({ ping: 1 });
 
+    // post user to database
+
     app.post("/users", async (req, res) => {
       const user = req.body;
       const result = await usersCollection.insertOne(user);
@@ -62,6 +64,8 @@ async function run() {
       res.status(200).send(result);
     });
 
+    // get current user's todo
+
     app.get("/usersTodo", async (req, res) => {
       const user = req.query;
       let query = {};
@@ -74,13 +78,14 @@ async function run() {
       res.status(200).send(result);
     });
 
+    // update todo status
+
     app.patch("/tasks/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
-      console.log(req.body);
+      // console.log(req.body);
 
       const update = req.body;
-      // console.log(update)
 
       const updateDocument = {
         $set: {
@@ -93,6 +98,8 @@ async function run() {
       res.send({ message: "Task updated successfully", result });
     });
 
+    // delete todo
+
     app.delete("/tasks/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -103,6 +110,56 @@ async function run() {
         result,
       });
     });
+
+    // get one todo
+
+    app.get("/edit/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const filter = { _id: new ObjectId(id) };
+      const result = await todoCollection.findOne(filter);
+      res.status(200).send({ message: "got it", success: true, result });
+    });
+
+    // patch todo
+
+    app.patch("/edit/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+
+      const update = req.body;
+
+      const updateDocument = {
+        $set: {
+          title: update.title,
+          priority: update.priority,
+          deadline: update.deadline,
+          description: update.description,
+        },
+      };
+
+      const result = await todoCollection.updateOne(filter, updateDocument);
+
+      res.send({ message: "Task updated successfully", result });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     console.log("connected to MongoDB!");
   } finally {
