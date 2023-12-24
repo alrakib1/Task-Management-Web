@@ -5,6 +5,8 @@ import ListTasks from "../List/ListTasks";
 
 const Form = () => {
     const [tasks, setTasks] = useState([])
+
+
     return (
         <div className="bg-slate-200 w-screen h-screen flex flex-col items-center justify-center pt-3 gap-16">
             <CreateTask tasks={tasks} setTasks={setTasks} ></CreateTask>

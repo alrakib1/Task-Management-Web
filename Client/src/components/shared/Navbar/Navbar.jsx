@@ -13,12 +13,18 @@ import Tooltip from "@mui/material/Tooltip";
 
 import "./styles/Nav.css";
 import useAuth from "../../../hooks/useAuth";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut();
+    navigate("/");
+  };
 
   const navItems = (
     <ul className="flex flex-wrap flex-row lg:justify-start gap-1 xs:justify-center xl:gap-5 items-center no-underline list-none px-2 ">
@@ -54,7 +60,7 @@ const Navbar = () => {
         <li className=" duration-300 hover:scale-x-110">About</li>
       </NavLink>
       {user && (
-        <li className="cursor-pointer" onClick={() => logOut()}>
+        <li className="cursor-pointer" onClick={handleLogOut}>
           Logout
         </li>
       )}
@@ -68,7 +74,7 @@ const Navbar = () => {
           <Link to="/profile">
             <li>Profile</li>
           </Link>
-          <li className="cursor-pointer" onClick={() => logOut()}>
+          <li className="cursor-pointer" onClick={handleLogOut}>
             Logout
           </li>
         </>

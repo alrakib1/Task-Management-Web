@@ -124,7 +124,7 @@ export default function PersistentDrawerLeft() {
             )}
           </IconButton>
         </DrawerHeader>
-        <NavLink to="/dashboard/create">
+        <NavLink to="/dashboard">
           <List className="flex items-center gap-2 hover:bg-blue-900 hover:text-white border-t border-b border-blue-900 font-Montserrat">
             <IoCreate className="ml-3" /> Create Task
           </List>
