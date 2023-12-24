@@ -93,6 +93,17 @@ async function run() {
       res.send({ message: "Task updated successfully", result });
     });
 
+    app.delete("/tasks/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await todoCollection.deleteOne(query);
+      res.status(200).send({
+        message: "Task has been deleted",
+        success: true,
+        result,
+      });
+    });
+
     console.log("connected to MongoDB!");
   } finally {
   }
