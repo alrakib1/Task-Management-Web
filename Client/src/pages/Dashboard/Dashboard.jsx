@@ -13,7 +13,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import Container from "../../components/shared/Container/Container";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 // icons
 
@@ -22,6 +22,9 @@ import { MdPreview } from "react-icons/md";
 
 // main
 const drawerWidth = 240;
+
+// css
+
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -121,26 +124,26 @@ export default function PersistentDrawerLeft() {
             )}
           </IconButton>
         </DrawerHeader>
-        <Link to="/dashboard/create">
-          <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white border-t border-b border-blue-900 font-Montserrat">
+        <NavLink to="/dashboard/create">
+          <List className="flex items-center gap-2 hover:bg-blue-900 hover:text-white border-t border-b border-blue-900 font-Montserrat">
             <IoCreate className="ml-3" /> Create Task
           </List>
-        </Link>
-        <Link to="/dashboard/view-to-do">
+        </NavLink>
+        <NavLink to="/dashboard/view-to-do">
           <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
             <MdPreview className="ml-3" /> View To-Do List
           </List>
-        </Link>
-        <Link to="/dashboard/view-ongoing">
+        </NavLink>
+        <NavLink to="/dashboard/view-ongoing">
           <List className="flex   items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
             <IoCreate className="ml-3" /> View Ongoing List
           </List>
-        </Link>
-        <Link to="/dashboard/view-completed">
+        </NavLink>
+        <NavLink to="/dashboard/view-completed">
           <List className="flex p-3 items-center gap-2 hover:bg-blue-900 hover:text-white border-b border-blue-900 font-Montserrat">
             <IoCreate className="ml-3" /> View Completed List
           </List>
-        </Link>
+        </NavLink>
       </Drawer>
       <Container>
         <Main open={open}>

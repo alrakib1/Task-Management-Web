@@ -11,7 +11,7 @@ import Avatar from "@mui/material/Avatar";
 
 import Tooltip from "@mui/material/Tooltip";
 
-import "./Nav.css";
+import "./styles/Nav.css";
 import useAuth from "../../../hooks/useAuth";
 import { Link, NavLink } from "react-router-dom";
 
