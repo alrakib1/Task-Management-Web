@@ -24,11 +24,11 @@ const Banner = () => {
           <h1 className="text-3xl md:text-4xl  lg:text-5xl xl:text-6xl font-semibold text-blue-900 xl:leading-10 font-Permanent xs:w-10/12">
             Welcome to
             <br className="hidden xl:block" />
-            <br /> Task Manager
+            <br /> Taskify
           </h1>
           <p className="xs:text-sm sm:text-sm md:text-base lg:text-lg md:pt-2 xl:pt-5 md:w-9/12">
             Unlock the power of seamless collaboration and productivity with
-            Task Manager. Our intuitive platform is designed to revolutionize the way
+            Taskify. Our intuitive platform is designed to revolutionize the way
             you manage tasks, whether you're working solo or with a team.
             Experience the perfect blend of simplicity and functionality, all
             wrapped in a visually appealing interface.
@@ -36,7 +36,7 @@ const Banner = () => {
 
           <button
             onClick={handleExplore}
-            className="btn mt-6 text-blue-900 shadow-md shadow-gray-400/50 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 rounded-md hover:bg-blue-900 hover:text-white transition-transform "
+            className="hover:scale-x-110 duration-300 mt-6 text-blue-900 shadow-md shadow-gray-400/50 font-semibold border-2 border-blue-900 px-2 py-1 xl:px-3 xl:py-2 rounded-md hover:bg-blue-900 hover:text-white transition-transform "
           >
             Let's Explore
           </button>

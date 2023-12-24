@@ -95,7 +95,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <h6 className="font-Permanent text-2xl">
-            <Link to="/">Task Management</Link>
+            <Link to="/">Taskify</Link>
           </h6>
         </Toolbar>
       </AppBar>

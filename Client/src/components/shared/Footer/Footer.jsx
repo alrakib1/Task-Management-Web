@@ -17,7 +17,7 @@ const Footer = () => {
           <FaTwitter className="text-3xl hover:text-white" />
         </Link>
       </div>
-      <p className="text-center text-white"> &copy; Task Management { moment().year()}</p>
+      <p className="text-center text-white"> &copy; Taskify { moment().year()}</p>
     </div>
   );
 };
