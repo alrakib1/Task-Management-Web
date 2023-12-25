@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Task Manager | Home</title>
+        <title>Taskify | Home</title>
       </Helmet>
       <Banner />
     </div>

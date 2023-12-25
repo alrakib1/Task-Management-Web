@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 
-import { useForm, Controller} from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {useParams} from 'react-router-dom'
-
+import { useParams } from "react-router-dom";
 
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../../api/useAxiosPublic";
@@ -13,45 +12,38 @@ import useTodos from "../../../../api/useTodos";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 
-
-
 const UpdateTask = () => {
-
   const params = useParams();
 
   // console.log(params?.id)
 
-    const {data={},refetch:loaded }= useQuery({
-        queryKey: ['to-tdo',params?.id], 
-        queryFn: async()=>{
-                const res = await axiosPublic.get(`/edit/${params?.id}`)
-                return res.data.result;
-        }
-    })
+  const { data = {}, refetch: loaded } = useQuery({
+    queryKey: ["to-tdo", params?.id],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/edit/${params?.id}`);
+      return res.data.result;
+    },
+  });
 
+  const axiosPublic = useAxiosPublic();
 
-    
-    
-    const axiosPublic = useAxiosPublic();
-    
-    
-    
-    const {refetch} = useTodos();
-    
-    const { register, handleSubmit, reset, control } = useForm();
-    
-    const status = data?.status;
-    // console.log(status)
-    
-    const onSubmit = async (data) => {
-      
+  const { refetch } = useTodos();
 
-    const updatedData = {...data,status};
+  const { register, handleSubmit, reset, control } = useForm();
+
+  const status = data?.status;
+  // console.log(status)
+
+  const onSubmit = async (data) => {
+    const updatedData = { ...data, status };
     // console.log(data)
 
     try {
-      const response = await axiosPublic.patch(`/edit/${params?.id}`, updatedData);
-        // console.log(response.data);
+      const response = await axiosPublic.patch(
+        `/edit/${params?.id}`,
+        updatedData
+      );
+      // console.log(response.data);
 
       const success = response.data.result.modifiedCount;
       if (success) {
@@ -68,12 +60,10 @@ const UpdateTask = () => {
     }
   };
 
-
-
   return (
     <div className="min-h-[calc(100vh-150px)] flex justify-center items-center">
       <Helmet>
-        <title>Task Manager | Update</title>
+        <title>Taskify | Update</title>
       </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -82,7 +72,7 @@ const UpdateTask = () => {
         <div>
           <h1 className="mb-2">Title</h1>
           <input
-          defaultValue={data?.title}
+            defaultValue={data?.title}
             name="title"
             {...register("title", { required: true })}
             type="text"
@@ -92,7 +82,7 @@ const UpdateTask = () => {
         <div>
           <h1 className="text-base mb-2">Priority</h1>
           <select
-          selected={data?.priority}
+            selected={data?.priority}
             className="border px-2 border-slate-400 bg-white rounded-md py-2 w-full"
             {...register("priority", { required: true })}
           >
@@ -130,7 +120,7 @@ const UpdateTask = () => {
           ></textarea>
         </div>
         <button className="rounded-md text-white bg-[#004080] py-2 px-4 hover:scale-x-105 duration-300">
-       Update
+          Update
         </button>
       </form>
     </div>

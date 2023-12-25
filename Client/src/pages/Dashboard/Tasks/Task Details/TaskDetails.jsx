@@ -22,7 +22,7 @@ const TaskDetails = () => {
   return (
     <div className="min-h-[calc(100vh-160px)] flex justify-center items-center w-full">
       <Helmet>
-        <title>Task Manager | Details</title>
+        <title>Taskify | Details</title>
       </Helmet>
       <div className="bg-slate-100 rounded-md shadow-lg w-full mx-auto px-10 py-10 space-y-4">
         <h1 className="text-xl font-semibold">Title: {data.title}</h1>

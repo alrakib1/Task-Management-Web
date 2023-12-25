@@ -20,8 +20,7 @@ const Login = () => {
 
   const { register, handleSubmit } = useForm();
 
-
-    // TODO: change the navigate route after login instead of useeffect
+  // TODO: change the navigate route after login instead of useeffect
 
   useEffect(() => {
     if (user) {
@@ -54,14 +53,13 @@ const Login = () => {
       })
       .catch(() => {
         // console.log(error);
-      
       });
   };
 
   return (
     <Container>
       <Helmet>
-        <title>Task Manager | Login</title>
+        <title>Taskify | Login</title>
       </Helmet>
 
       <div>

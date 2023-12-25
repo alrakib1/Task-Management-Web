@@ -100,7 +100,7 @@ const Signup = () => {
   return (
     <Container>
       <Helmet>
-        <title>Task Manager | Signup</title>
+        <title>Taskify | Signup</title>
       </Helmet>
 
       <div>

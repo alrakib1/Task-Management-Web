@@ -99,7 +99,7 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: "flex" }}>
       <Helmet>
-        <title>Task Manager | Dashboard</title>
+        <title>Taskify | Dashboard</title>
       </Helmet>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ backgroundColor: "#1E3A8A" }}>
