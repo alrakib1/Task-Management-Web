@@ -40,9 +40,7 @@ It's a website where you can register and log in with your email or google accou
 - User will only be able to see his todo list.
  - User will also be able to edit and update to-do.
 
- ### Live website: 
 
- https://taskmanagement-web.netlify.app/
 
  
 ## Authors
