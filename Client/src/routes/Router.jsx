@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllTasks from "../pages/Dashboard/AllTasks/AllTasks";
 import TaskDetails from "../pages/Dashboard/Tasks/Task Details/TaskDetails";
 import Profile from "../pages/Dashboard/Profile/Profile";
+import CreateTask from "../pages/Dashboard/Tasks/CreateTask";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/profile',
         element: <Profile></Profile>
+      },
+      {
+        path: '/dashboard/create',
+        element: <CreateTask></CreateTask>
       }
      
     ],

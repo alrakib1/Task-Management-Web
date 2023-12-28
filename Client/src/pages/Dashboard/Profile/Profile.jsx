@@ -23,12 +23,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-160px)] flex justify-center items-center w-full">
+    <div className="min-h-[calc(100vh-160px)]  flex justify-center items-center xs:w-3/4 mx-auto sm:w-full">
       <Helmet>
         <title>Taskify | Profile</title>
       </Helmet>
-      <div className="bg-slate-100 xs:w-[300px] md:w-[700px] rounded-md shadow-lg mx-auto px-10 py-10 space-y-4 font-medium">
-        <h1 className="mb-10 text-center text-2xl font-bold font-Permanent text-blue-900 ">
+      <div className="bg-[#242320] xs:max-w-[300px] md:max-w-[700px] rounded-xl shadow-[#A35709] border border-[#A35709] shadow-lg mx-auto px-10 py-10 space-y-4 font-medium">
+        <h1 className="mb-10 text-center text-2xl font-bold font-Permanent text-[#A35709] ">
           Welcome
         </h1>
         <div className="flex flex-col md:flex-row md:justify-between gap-5 md:gap-10">
@@ -65,13 +65,13 @@ const Profile = () => {
         </div>
         <div className="flex justify-between gap-5">
           <button
-            className="mt-5 border  px-3 py-1 rounded-md bg-white text-blue-900 hover:scale-x-110 duration-300 "
+            className="mt-5 border  px-3 py-1 rounded-md bg-white text-[#A35709] hover:scale-x-110 duration-300 "
             onClick={handleLogout}
           >
             Log out
           </button>
           <Link to="/dashboard">
-            <button className="mt-5 border px-3 py-1 rounded-md bg-blue-900 text-white hover:scale-x-110 duration-300">
+            <button className="mt-5 border px-3 py-1 rounded-md bg-[#A35709] text-[#F0E3CA] hover:scale-x-110 duration-300">
               View all
             </button>
           </Link>

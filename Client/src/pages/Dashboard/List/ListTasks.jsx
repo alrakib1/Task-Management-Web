@@ -13,7 +13,7 @@ const ListTasks = ({ tasks, refetch }) => {
   const statuses = ["to-do", "ongoing", "completed"];
 
   return (
-    <div className="min-h-[calc(100vh-150px)] flex justify-center md:pt-16 2xl:pt-32">
+    <div className="min-h-[calc(100vh-150px)] flex justify-center  md:pt-16 2xl:pt-32">
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  px-3 gap-10">
         {statuses.map((stat, index) => (
           <Section

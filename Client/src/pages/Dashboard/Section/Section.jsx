@@ -6,10 +6,7 @@ import useAxiosPublic from "../../../api/useAxiosPublic";
 import toast from "react-hot-toast";
 
 const Section = ({ stat, todo, completed, ongoing, refetch }) => {
-
-
-const axiosPublic = useAxiosPublic();
-
+  const axiosPublic = useAxiosPublic();
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
@@ -19,37 +16,51 @@ const axiosPublic = useAxiosPublic();
     }),
   }));
 
-  const addItemToSection = async(id) => {
+  const addItemToSection = async (id) => {
     // console.log("dropped ", id, stat);
 
     const updatedStatus = {
-      status: stat
-    }
+      status: stat,
+    };
 
-    const response = await axiosPublic.patch(`/tasks/${id}`,updatedStatus);
+    const response = await axiosPublic.patch(`/tasks/${id}`, updatedStatus);
     // console.log(response.data.result.modifiedCount)
-    if(response.data.result.modifiedCount >0){
-      toast.success(`Moved to ${stat}`, { icon: "✅" });
+    if (response.data.result.modifiedCount > 0) {
+      toast.success(`Moved to ${stat}`, {
+        style: {
+          border: "1px solid #FF8303",
+          padding: "16px",
+          color: "white",
+          backgroundColor: "#242320",
+        },
+        iconTheme: {
+          primary: "#FF8303",
+          secondary: "#FFFAEE",
+        },
+      });
       refetch();
     }
   };
 
   let text = "todo";
-  let bg = "bg-slate-500";
+  let bg = "bg-[#FF8303]";
 
   let tasksToMap = todo;
 
   if (stat === "ongoing") {
-    (text = "On going"), (bg = "bg-purple-500");
+    (text = "On going"), (bg = "bg-[#FF8303]");
     tasksToMap = ongoing;
   }
   if (stat === "completed") {
-    (text = "completed"), (bg = "bg-green-500");
+    (text = "completed"), (bg = "bg-[#FF8303]");
     tasksToMap = completed;
   }
 
   return (
-    <div ref={drop} className={`w-64 rounded-md p-2 ${isOver ? "bg-slate-200" : ""}`}>
+    <div
+      ref={drop}
+      className={`w-64 rounded-md p-2 ${isOver ? "bg-slate-200" : ""}`}
+    >
       <Header text={text} bg={bg} count={tasksToMap.length}></Header>
       {tasksToMap.length > 0 &&
         tasksToMap.map((task) => (

@@ -13,8 +13,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-import Container from "../../components/shared/Container/Container";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 // icons
 import { CiLogout } from "react-icons/ci";
@@ -28,6 +28,7 @@ import { Helmet } from "react-helmet-async";
 const drawerWidth = 240;
 
 // css
+import './styles/Dashboard.css'
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -102,7 +103,7 @@ export default function PersistentDrawerLeft() {
         <title>Taskify | Dashboard</title>
       </Helmet>
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx={{ backgroundColor: "#1E3A8A" }}>
+      <AppBar position="fixed" open={open} sx={{ backgroundColor: "#A35709" }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -125,6 +126,7 @@ export default function PersistentDrawerLeft() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
+            backgroundColor: '#242320'
           },
         }}
         variant="persistent"
@@ -134,9 +136,9 @@ export default function PersistentDrawerLeft() {
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
+              <ChevronLeftIcon className="text-white" />
             ) : (
-              <ChevronRightIcon />
+              <ChevronRightIcon className="text-white" />
             )}
           </IconButton>
         </DrawerHeader>
@@ -158,34 +160,39 @@ export default function PersistentDrawerLeft() {
           />
         </List>
         <div className="flex flex-col space-y-4">
-          <NavLink to="/dashboard">
-            <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
+          <Link to="/dashboard">
+            <List className="flex  items-center gap-2 text-white hover:bg-[#A35709] hover:text-[#F0E3CA]  border-b border-[#A35709] font-Montserrat">
               <MdPreview className="ml-3" /> View All Tasks
             </List>
-          </NavLink>
-          <NavLink to="/dashboard/profile">
-            <List className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat">
+          </Link>
+          <Link to="/dashboard/create">
+            <List className="flex  items-center gap-2 text-white hover:bg-[#A35709] hover:text-[#F0E3CA]  border-b border-[#A35709] font-Montserrat">
+              <MdPreview className="ml-3" /> Create New Task
+            </List>
+          </Link>
+          <Link to="/dashboard/profile">
+            <List className="flex  items-center gap-2 text-white hover:bg-[#A35709] hover:text-[#F0E3CA]  border-b border-[#A35709] font-Montserrat">
               <FaRegUserCircle className="ml-3" /> Profile
             </List>
-          </NavLink>
+          </Link>
 
           <List
-            className="flex  items-center gap-2 hover:bg-blue-900 hover:text-white  border-b border-blue-900 font-Montserrat"
+            className="flex  items-center gap-2 text-white hover:bg-[#A35709] hover:text-[#F0E3CA]  border-b border-[#A35709] font-Montserrat"
             onClick={handleLogOut}
           >
             <CiLogout className="ml-3" /> Logout
           </List>
         </div>
       </Drawer>
-      <Container>
+    
         <Main open={open}>
           <DrawerHeader />
-          <div className="font-Montserrat">
+          <div className="font-Montserrat min-h-[calc(100vh-80px)] bg-[#1B1A17]">
             <Toaster position="top-center" reverseOrder={false} />
             <Outlet />
           </div>
         </Main>
-      </Container>
+    
     </Box>
   );
 }

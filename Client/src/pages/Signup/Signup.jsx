@@ -63,7 +63,19 @@ const Signup = () => {
           const newUser = result.user;
           axiosPublic.post("/users", userData);
 
-          newUser && toast.success("Signup successful!");
+          newUser &&
+            toast.success("signup successful", {
+              style: {
+                border: "1px solid #FF8303",
+                padding: "16px",
+                color: "white",
+                backgroundColor: "#242320",
+              },
+              iconTheme: {
+                primary: "#FF8303",
+                secondary: "#FFFAEE",
+              },
+            });
 
           updateUser(name, avatarImage)
             .then(() => {
@@ -77,9 +89,23 @@ const Signup = () => {
         .catch((error) => {
           // console.log(error);
           error.code === "auth/email-already-in-use" &&
-            toast.error("User already exists !!!");
+            toast.error("User already exits !!!", {
+              style: {
+                border: "1px solid #FF8303",
+                padding: "16px",
+                color: "white",
+                backgroundColor: "#242320",
+              },
+            });
           error.code === "auth/weak-password" &&
-            toast.error("Password Must be 6 characters !!!");
+            toast.error("Password Must be 6 characters  !!!", {
+              style: {
+                border: "1px solid #FF8303",
+                padding: "16px",
+                color: "white",
+                backgroundColor: "#242320",
+              },
+            });
         });
     }
   };
@@ -88,7 +114,19 @@ const Signup = () => {
     loginWithGmail()
       .then((result) => {
         const newUser = result.user;
-        newUser && toast.success("Signup successful!");
+        newUser &&
+          toast.success("Signup successful", {
+            style: {
+              border: "1px solid #FF8303",
+              padding: "16px",
+              color: "white",
+              backgroundColor: "#242320",
+            },
+            iconTheme: {
+              primary: "#FF8303",
+              secondary: "#FFFAEE",
+            },
+          });
         // console.log(user);
         navigate("/");
       })
@@ -104,16 +142,16 @@ const Signup = () => {
       </Helmet>
 
       <div>
-        <div className="bg-gray-50 font-Montserrat">
+        <div className="bg-[#242320] font-Montserrat rounded-2xl">
           {/* Signup container */}
 
-          <div className="bg-gray-100 flex  flex-row-reverse rounded-2xl shadow-lg max-w-3xl xs:py-4 py-0 sm:p-5 items-center">
+          <div className="bg-[#242320] flex  flex-row-reverse rounded-2xl shadow-lg max-w-3xl xs:py-4 py-0 sm:p-5 items-center">
             {/* form */}
             <div className="md:w-1/2 px-8">
-              <h1 className="font-bold text-2xl text-blue-900 text-center">
+              <h1 className="font-bold text-2xl text-[#A35709] text-center">
                 Signup
               </h1>
-              <p className="text-sm mt-4 text-center text-blue-900 font-medium">
+              <p className="text-sm mt-4 text-center font-medium">
                 New here ? Signup easily
               </p>
               <form
@@ -121,20 +159,20 @@ const Signup = () => {
                 onSubmit={handleSubmit(onSubmit)}
               >
                 <input
-                  className="p-2 mt-8 border rounded-xl"
+                  className="p-2 mt-8 border rounded-xl font-medium text-black"
                   type="text"
                   name="name"
                   placeholder="Your Name"
                   {...register("name", { required: true })}
                 />
                 <input
-                  className="p-2  border file:bg-white file:text-blue-900 file:font-medium font-medium file:border-gray-500 file:border file:rounded-xl rounded-xl"
+                  className="p-2 xs:w-11/12 md:w-full border file:bg-white file:text-[#A35709] file:font-medium font-sm file:border-gray-500 file:border file:rounded-xl rounded-xl"
                   type="file"
                   name="photo"
                   {...register("photo", { required: true })}
                 />
                 <input
-                  className="p-2  border rounded-xl"
+                  className="p-2  border rounded-xl font-medium text-black"
                   type="email"
                   name="email"
                   placeholder="Email"
@@ -142,7 +180,7 @@ const Signup = () => {
                 />
                 <div className="relative">
                   <input
-                    className="p-2 border rounded-xl w-full"
+                    className="p-2 border rounded-xl w-full font-medium text-black"
                     type={showPass ? "text" : "password"}
                     name="password"
                     id=""
@@ -161,7 +199,7 @@ const Signup = () => {
                     />
                   )}
                 </div>
-                <button className="rounded-xl text-white bg-[#004080] py-2 hover:scale-105 duration-300">
+                <button className="rounded-xl text-white bg-[#A35709] hover:bg-[#FF8303] py-2 hover:scale-105 duration-300">
                   Signup
                 </button>
               </form>
@@ -173,7 +211,7 @@ const Signup = () => {
               <div>
                 <button
                   onClick={() => handleGoogleSignup()}
-                  className="border bg-white py-2 w-full rounded-xl mt-5 flex justify-center items-center hover:scale-105 duration-300 hover:bg-blue-900 hover:text-white"
+                  className="border bg-[#A35709] py-2 w-full rounded-xl mt-5 flex justify-center items-center hover:scale-105 duration-300 hover:bg-[#FF8303] hover:text-white"
                 >
                   <FaGoogle className="w-[25px] mr-1 text-sm" />
                   Signup in with google
@@ -183,7 +221,7 @@ const Signup = () => {
               <div className="text-xs mt-3 flex justify-between items-center">
                 <p>Already have an account ....</p>
                 <Link to="/login">
-                  <button className="py-2 px-5 bg-white border rounded-xl hover:bg-blue-900 hover:text-white hover:scale-110 duration-300">
+                  <button className="py-2 px-5 bg-[#1B1A17] border rounded-xl hover:bg-[#FF8303] hover:text-white hover:scale-110 duration-300">
                     Login
                   </button>
                 </Link>
@@ -197,7 +235,7 @@ const Signup = () => {
                 loop
                 animationData={animation}
                 play
-                className="rounded-2xl h-full object-contain bg-[#ADD8E6]"
+                className="rounded-2xl h-full object-contain bg-[#A35709]"
               />
             </div>
           </div>

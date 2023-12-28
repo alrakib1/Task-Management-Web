@@ -18,14 +18,12 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import useCurrentUser from "../../../api/useCurrentUser";
 
-
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
 
-  const {currentUser} = useCurrentUser();
+  const { currentUser } = useCurrentUser();
   // console.log(currentUser)
-
 
   const handleLogOut = () => {
     logOut();
@@ -116,11 +114,11 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "white" }}>
-      <Container maxWidth="xl" className="bg-white">
-        <Toolbar disableGutters className="bg-white text-black">
+    <AppBar position="static" sx={{ backgroundColor: "#242320" }}>
+      <Container maxWidth="xl" className="bg-[#242320]">
+        <Toolbar disableGutters className="bg-[#242320]">
           <Link to="/">
-            <h1 className="font-Permanent text-xl font-medium text-blue-900">
+            <h1 className="font-Permanent text-xl font-medium text-[#A35709]">
               Taskify
             </h1>
           </Link>
@@ -163,9 +161,16 @@ const Navbar = () => {
             <Tooltip>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {user ? (
-                  <Avatar alt="user-avatar-image" src={ currentUser.length === 0 ? user?.photoURL: currentUser[0]?.avatarImage} />
+                  <Avatar
+                    alt="user-avatar-image"
+                    src={
+                      currentUser.length === 0
+                        ? user?.photoURL
+                        : currentUser[0]?.avatarImage
+                    }
+                  />
                 ) : (
-                  <FaRegUserCircle className=" text-blue-900 sm:w-6 sm:h-6 lg:w-9 lg:h-9" />
+                  <FaRegUserCircle className=" text-[#A35709] sm:w-6 sm:h-6 lg:w-9 lg:h-9" />
                 )}
               </IconButton>
             </Tooltip>

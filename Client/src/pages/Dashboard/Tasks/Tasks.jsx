@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 // icons
 import { IoRemoveCircleOutline } from "react-icons/io5";
@@ -24,55 +24,62 @@ const Tasks = ({ task, refetch }) => {
 
   const axiosPublic = useAxiosPublic();
 
-  const handleRemove =  () => {
-
-
+  const handleRemove = () => {
     Swal.fire({
       title: "Do you want to delete this task?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then(async(result) => {
+      backgroundColor: '#242320',
+      confirmButtonColor: "#A35709",
+      cancelButtonColor: "#FF8303",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axiosPublic.delete(`/tasks/${_id}`);
-        (res?.data?.result.deletedCount ) &&
-          toast.success("Task has been removed", { icon: "💀" }) &&   refetch();
+        if (res?.data?.result.deletedCount) {
+          toast.success("To do has been added", {
+            style: {
+              border: "1px solid #FF8303",
+              padding: "16px",
+              color: "white",
+              backgroundColor: "#242320",
+            },
+            iconTheme: {
+              primary: "#FF8303",
+              secondary: "#FFFAEE",
+            },
+            icon: "💀",
+          });
+          refetch();
+        }
       }
     });
-
-
-   
-  
   };
 
   return (
     <div
       ref={drag}
-      className={`flex h-40 flex-col gap-5 overflow-hidden  p-4 mt-5 shadow-md rounded-md cursor-grab ${
+      className={`flex h-40 flex-col gap-5 overflow-hidden bg-[#242320] border border-[#A35709] shadow-[#A35709]  p-4 mt-5 shadow-md rounded-md cursor-grab ${
         isDragging ? "opacity-25" : "opacity-100"
       }`}
     >
       <p className="h-20">{title}</p>
       <p className="text-sm">priority: {priority}</p>
-      <div className="flex justify-around items-center mt-auto">
+      <div className="flex justify-around items-center mt-auto text-[#FF8303] font-semibold">
         <button
-          className=" bottom-1 right-1 text-slate-400 hover:text-blue-900"
+          className=" bottom-1 right-1  hover:text-[#A35709]"
           onClick={() => handleRemove()}
         >
           <IoRemoveCircleOutline className="cursor-pointer" />
         </button>
         <Link to={`/dashboard/edit/${_id}`}>
-          <button className=" bottom-6 text-base right-1 text-slate-400">
+          <button className=" bottom-6 text-base right-1 ">
             <MdEdit className="cursor-pointer" />
           </button>
         </Link>
         <Link to={`/dashboard/details/${_id}`}>
-          <button
-            className=" bottom-10 text-base right-1 text-slate-400"
-          >
+          <button className=" bottom-10 text-base right-1 ">
             <FaEye className="cursor-pointer" />
           </button>
         </Link>

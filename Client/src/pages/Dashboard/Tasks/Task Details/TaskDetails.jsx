@@ -24,7 +24,7 @@ const TaskDetails = () => {
       <Helmet>
         <title>Taskify | Details</title>
       </Helmet>
-      <div className="bg-slate-100 rounded-md shadow-lg w-full mx-auto px-10 py-10 space-y-4">
+      <div className="bg-[#242320] rounded-2xl shadow-lg shadow-[#A35709] md:w-4/6 xl:w-2/4 mx-auto px-10 py-10 space-y-4">
         <h1 className="text-xl font-semibold">Title: {data.title}</h1>
         <p className="text-base font-medium">Priority: {data.priority}</p>
         <p className="text-sm font-medium">Details: {data.description}</p>
@@ -32,7 +32,7 @@ const TaskDetails = () => {
         <p className="text-sm font-medium">Status: {data.status}</p>
         <div className="flex justify-end gap-10 items-center mt-10">
           <Link to={`/dashboard/edit/${_id}`}>
-            <button className="  text-base  text-black">
+            <button className="  text-base  text-[#FF8303]">
               <MdEdit className="cursor-pointer" />
             </button>
           </Link>
