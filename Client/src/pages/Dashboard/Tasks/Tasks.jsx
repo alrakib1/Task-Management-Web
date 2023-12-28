@@ -38,7 +38,7 @@ const Tasks = ({ task, refetch }) => {
       if (result.isConfirmed) {
         const res = await axiosPublic.delete(`/tasks/${_id}`);
         if (res?.data?.result.deletedCount) {
-          toast.success("To do has been added", {
+          toast.success("To do has been deleted", {
             style: {
               border: "1px solid #FF8303",
               padding: "16px",
