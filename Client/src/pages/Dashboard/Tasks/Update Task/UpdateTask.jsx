@@ -143,7 +143,7 @@ const UpdateTask = () => {
             {...register("description", { required: true })}
           ></textarea>
         </div>
-        <button className="rounded-md text-[#F0E3CA] bg-[#A35709] py-2 px-4 hover:scale-x-105 duration-300">
+        <button className="rounded-md text-[#F0E3CA] bg-[#A35709] py-2 px-4 hover:scale-x-90 mt-5 w-2/6 mx-auto duration-300">
           Update
         </button>
       </form>
