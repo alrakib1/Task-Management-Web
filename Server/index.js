@@ -10,7 +10,11 @@ app.use(express.json());
 
 // middle ware
 
-app.use(cors());
+const corsOptions = {
+  origin: ["https://taskify-web-app.vercel.app", "http://localhost:5173"],
+};
+
+app.use(cors(corsOptions));
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const { ObjectId } = require("mongodb");
@@ -85,9 +89,6 @@ async function run() {
     app.patch("/tasks/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
-      // console.log(req.body);
-
-      const update = req.body;
 
       const updateDocument = {
         $set: {
@@ -137,7 +138,7 @@ async function run() {
           priority: update.priority,
           deadline: update.deadline,
           description: update.description,
-         status: update.status
+          status: update.status,
         },
       };
 
@@ -145,8 +146,6 @@ async function run() {
 
       res.send({ message: "Task updated successfully", result });
     });
-
-
 
     app.get("/profile", async (req, res) => {
       let query = {};
@@ -157,20 +156,6 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     console.log("connected to MongoDB!");
   } finally {

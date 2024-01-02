@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://taskify-server-lovat.vercel.app",
+  baseURL: "http://localhost:6585",
 });
 
 const useAxiosPublic = () => {

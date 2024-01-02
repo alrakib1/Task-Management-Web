@@ -30,7 +30,6 @@ const Tasks = ({ task, refetch }) => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      backgroundColor: '#242320',
       confirmButtonColor: "#A35709",
       cancelButtonColor: "#FF8303",
       confirmButtonText: "Yes, delete it!",
