@@ -3,8 +3,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+
+.swal2-popup {
+  background-color: #1B1A17; /* Set your desired background color */
+}
+
+.swal2-title {
+  color: #ffffff; /* Set the text color */
+}
+
+.swal2-content {
+  color: #ffffff; /* Set the text color */
+}
+
+.swal2-html-container{
+  color: white !important;
+}
+.swal2-warning{
+color: red !important;
 }

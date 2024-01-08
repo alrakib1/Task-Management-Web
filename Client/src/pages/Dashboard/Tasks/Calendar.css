@@ -1,0 +1,29 @@
+.bg-custom-calendar{
+    background-color: #1B1A17;
+    color: white;
+}
+
+.react-datepicker__month-container{
+  color: white !important;
+}
+
+.react-datepicker__week{
+  color: white;
+}
+
+.react-datepicker__day{
+  color: white;
+}
+.react-datepicker__day:hover{
+  color: white;
+  background-color: #FF8303;
+}
+
+.react-datepicker__day--keyboard-selected{
+  background-color: #A35709;
+}
+
+/* .react-datepicker__header {
+  background-color: #A35709;
+  color: white;
+} */

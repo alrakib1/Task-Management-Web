@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
 
   return loading ? (
     <div className="min-h-screen flex justify-center items-center">
-      <PacmanLoader color="#1E3A8A" loading size={20} />
+      <PacmanLoader color="#FF8303" loading size={20} />
     </div>
   ) : (
     user && children

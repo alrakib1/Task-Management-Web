@@ -6,10 +6,11 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
 // icons
-import { IoRemoveCircleOutline } from "react-icons/io5";
+
 import { MdEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import useAxiosPublic from "../../../api/useAxiosPublic";
+import { MdDelete } from "react-icons/md";
 
 const Tasks = ({ task, refetch }) => {
   const { _id, title, priority } = task;
@@ -70,7 +71,7 @@ const Tasks = ({ task, refetch }) => {
           className=" bottom-1 right-1  hover:text-[#A35709]"
           onClick={() => handleRemove()}
         >
-          <IoRemoveCircleOutline className="cursor-pointer" />
+          <MdDelete className="cursor-pointer" />
         </button>
         <Link to={`/dashboard/edit/${_id}`}>
           <button className=" bottom-6 text-base right-1 ">

@@ -11,11 +11,13 @@ import useAxiosPublic from "../../../../api/useAxiosPublic";
 import useTodos from "../../../../api/useTodos";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
+import { parseISO } from 'date-fns';
+import '../Calendar.css'
 
 const UpdateTask = () => {
   const params = useParams();
 
-  // console.log(params?.id)
+
 
   const { data = {}, refetch: loaded } = useQuery({
     queryKey: ["to-tdo", params?.id],
@@ -25,6 +27,9 @@ const UpdateTask = () => {
     },
   });
 
+  console.log(data);
+
+
   const axiosPublic = useAxiosPublic();
 
   const { refetch } = useTodos();
@@ -32,18 +37,18 @@ const UpdateTask = () => {
   const { register, handleSubmit, reset, control } = useForm();
 
   const status = data?.status;
-  // console.log(status)
+
 
   const onSubmit = async (data) => {
     const updatedData = { ...data, status };
-    // console.log(data)
+
 
     try {
       const response = await axiosPublic.patch(
         `/edit/${params?.id}`,
         updatedData
       );
-      // console.log(response.data);
+
 
       const success = response.data.result.modifiedCount;
       if (success) {
@@ -83,6 +88,10 @@ const UpdateTask = () => {
       });
     }
   };
+
+const deadlineValue = data.deadline;
+
+  const parsedDeadline = deadlineValue ? parseISO(deadlineValue) : null;
 
   return (
     <div className="min-h-[calc(100vh-150px)]  md:w-3/4 lg:w-1/2 mx-auto flex justify-center items-center">
@@ -128,14 +137,17 @@ const UpdateTask = () => {
                 className="py-2 px-2 rounded-md w-full bg-[#1B1A17] "
                 selected={field.value}
                 onChange={(date) => field.onChange(date)}
+                calendarClassName="bg-custom-calendar text-white" 
               />
             )}
+            defaultValue={parsedDeadline}
           />
         </div>
         <div>
           <h2>Description</h2>
           <textarea
             name="description"
+            defaultValue={data?.description}
             id=""
             cols="30"
             rows="5"

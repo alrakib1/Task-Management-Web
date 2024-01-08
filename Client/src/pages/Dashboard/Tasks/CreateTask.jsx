@@ -8,6 +8,9 @@ import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useTodos from "../../../api/useTodos";
 
+import './Calendar.css'
+
+
 const CreateTask = () => {
   const axiosPublic = useAxiosPublic();
 
@@ -65,7 +68,7 @@ const CreateTask = () => {
     }
   };
 
-  // console.log(email)
+
 
   return (
     <div className="min-h-[calc(100vh-150px)] md:w-3/4 lg:w-1/2 bg-[#1B1A17] mx-auto flex justify-center items-center ">
@@ -106,6 +109,7 @@ const CreateTask = () => {
                 className="py-2 px-2 rounded-md w-full bg-[#1B1A17]"
                 selected={field.value}
                 onChange={(date) => field.onChange(date)}
+                calendarClassName="bg-custom-calendar text-white" 
               />
             )}
           />

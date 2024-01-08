@@ -6,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaEye, FaPlus, FaRegUserCircle } from "react-icons/fa";
 
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,7 +18,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 // icons
 import { CiLogout } from "react-icons/ci";
-import { MdPreview } from "react-icons/md";
+
 import { Toaster } from "react-hot-toast";
 import { Avatar } from "@mui/material";
 import useAuth from "../../hooks/useAuth";
@@ -162,12 +162,12 @@ export default function PersistentDrawerLeft() {
         <div className="flex flex-col space-y-4">
           <Link to="/dashboard">
             <List className="flex  items-center gap-2 text-white hover:bg-[#A35709] hover:text-[#F0E3CA]  border-b border-[#A35709] font-Montserrat">
-              <MdPreview className="ml-3" /> View All Tasks
+              <FaEye className="ml-3" /> View All Tasks
             </List>
           </Link>
           <Link to="/dashboard/create">
             <List className="flex  items-center gap-2 text-white hover:bg-[#A35709] hover:text-[#F0E3CA]  border-b border-[#A35709] font-Montserrat">
-              <MdPreview className="ml-3" /> Create New Task
+              <FaPlus className="ml-3" /> Create New Task
             </List>
           </Link>
           <Link to="/dashboard/profile">
