@@ -7,9 +7,8 @@ import useAxiosPublic from "../../../api/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useTodos from "../../../api/useTodos";
-
-import './Calendar.css'
-
+import { CiCalendar } from "react-icons/ci";
+import "./Calendar.css";
 
 const CreateTask = () => {
   const axiosPublic = useAxiosPublic();
@@ -47,28 +46,26 @@ const CreateTask = () => {
         refetch();
         reset();
       } else {
-        toast.error("Failed to add todo !!!",{
+        toast.error("Failed to add todo !!!", {
           style: {
             border: "1px solid #FF8303",
-            padding: '16px',
-            color: 'white',
+            padding: "16px",
+            color: "white",
             backgroundColor: "#242320",
-          }
+          },
         });
       }
     } catch (error) {
-      toast.error("An error has occurred !!!",{
+      toast.error("An error has occurred !!!", {
         style: {
           border: "1px solid #FF8303",
-          padding: '16px',
-          color: 'white',
+          padding: "16px",
+          color: "white",
           backgroundColor: "#242320",
-        }
+        },
       });
     }
   };
-
-
 
   return (
     <div className="min-h-[calc(100vh-150px)] md:w-3/4 lg:w-1/2 bg-[#1B1A17] mx-auto flex justify-center items-center ">
@@ -98,26 +95,30 @@ const CreateTask = () => {
         </div>
         <div>
           <h1 className="mb-2">Deadline</h1>
-          <Controller
-            control={control}
-            name="deadline"
-            render={({ field }) => (
-              <DatePicker
-                dateFormat="dd/MM/yyyy"
-                minDate={new Date()}
-                isClearable
-                className="py-2 px-2 rounded-md w-full bg-[#1B1A17]"
-                selected={field.value}
-                onChange={(date) => field.onChange(date)}
-                calendarClassName="bg-custom-calendar text-white" 
-              />
-            )}
-          />
+          <div className="relative">
+            <Controller
+              control={control}
+              name="deadline"
+              render={({ field }) => (
+                <DatePicker
+                  dateFormat="dd/MM/yyyy"
+                  minDate={new Date()}
+                  isClearable
+                  className="py-2 px-2 rounded-md w-full bg-[#1B1A17]"
+                  selected={field.value}
+                  onChange={(date) => field.onChange(date)}
+                  calendarClassName="bg-custom-calendar text-white"
+                  placeholderText="Select a date"
+                />
+              )}
+            />
+
+            <CiCalendar className="text-xl absolute top-2 left-44 text-[#F0E3CA]" />
+          </div>
         </div>
         <div>
           <h2>Description</h2>
           <textarea
-        
             name="description"
             id=""
             className="rounded-md p-2 border-slate-400 bg-[#1B1A17]  border w-full"
