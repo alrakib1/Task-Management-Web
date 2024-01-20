@@ -29,16 +29,16 @@ It's a website where you can register and log in with your email or google accou
 
 - If you click on explore more, it will navigate you to login page. After successful log in user will be redirected to the home page and will be able to see a toast on the top of the website.
 
-- A person won't be able to create multiple account with same email.
-- On signup page anyone will be able to create account with their name, email, password, photo. 
+- You won't be able to create multiple account with same email.
+- On signup page you will be able to create account with your name, email, password, photo. 
 - React hook from has been used on both login and signup page.
 
-- After successful login user will be able to see dashboard. From there user can create todo. 
-- On dashboard Menu, user will able to see his/her profile photo.
+- After successful login you will be able to see dashboard option on navigation bar. From there you can go to the dashboard page and see multiple option on the menu such as create todo. 
+- On dashboard Menu, you will able to see your profile photo.
 - Every todo has title, description, deadline, priority. Every field is required.
-- From dashboard user can simply update any do status simply by drag and dropping it to to-do, ongoing or completed section. It will update automatically.
-- User will only be able to see his todo list.
- - User will also be able to edit and update to-do.
+- From dashboard you will be able to update any task's status simply by drag and dropping it to to-do, ongoing or completed section. It will update automatically.
+- You will only be able to see only your todo list.
+ - You will also be able to edit and update to-do and delete them if neccessary.
 
 
 
