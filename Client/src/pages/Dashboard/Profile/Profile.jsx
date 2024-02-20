@@ -49,7 +49,7 @@ const Profile = () => {
                   }
                 >
                   {user.emailVerified ? "Yes" : "No"}
-                </span>{" "}
+                </span>
               </p>
             </div>
             <div>

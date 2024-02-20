@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 
 // icons
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import useAxiosPublic from "../../api/useAxiosPublic";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
@@ -19,6 +20,8 @@ const Login = () => {
   const { logIn, user, loginWithGmail } = useAuth();
 
   const { register, handleSubmit } = useForm();
+
+  const axiosPublic = useAxiosPublic();
 
   // TODO: change the navigate route after login instead of useeffect
 
@@ -33,8 +36,14 @@ const Login = () => {
     const password = data?.password;
 
     logIn(email, password)
-      .then((result) => {
-        // console.log(result)
+      .then(async (result) => {
+        await axiosPublic.post(
+          "/jwt",
+          { email },
+          {
+            withCredentials: true,
+          }
+        );
         result &&
           toast.success("Login successful", {
             style: {
@@ -50,7 +59,6 @@ const Login = () => {
           });
       })
       .catch((error) => {
-        // console.log(error);
 
         error &&
           toast.error("Wrong Email or Password !!!", {
@@ -66,8 +74,17 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     loginWithGmail()
-      .then((result) => {
-        const user = result.user;
+      .then(async (result) => {
+        const email = result.user.email;
+
+        await axiosPublic.post(
+          "/jwt",
+          { email },
+          {
+            withCredentials: true,
+          }
+        );
+
         user &&
           toast.success("Login successful", {
             style: {
@@ -81,7 +98,6 @@ const Login = () => {
               secondary: "#FFFAEE",
             },
           });
-        // console.log(user)
       })
       .catch(() => {
         toast.error("An error has occurred !!!", {

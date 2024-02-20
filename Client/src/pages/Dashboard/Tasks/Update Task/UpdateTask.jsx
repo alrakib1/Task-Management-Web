@@ -6,31 +6,27 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useParams } from "react-router-dom";
 
 import toast from "react-hot-toast";
-import useAxiosPublic from "../../../../api/useAxiosPublic";
 
 import useTodos from "../../../../api/useTodos";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
-import { parseISO } from 'date-fns';
-import '../Calendar.css'
+import "../Calendar.css";
+import useAxiosSecure from "../../../../api/useAxiosSecure";
 
 const UpdateTask = () => {
   const params = useParams();
 
-
+  const axiosSecure = useAxiosSecure();
 
   const { data = {}, refetch: loaded } = useQuery({
-    queryKey: ["to-tdo", params?.id],
+    queryKey: ["updateTodo", params?.id],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/edit/${params?.id}`);
+      const res = await axiosSecure.get(`/edit/${params?.id}`);
       return res.data.result;
     },
   });
 
   console.log(data);
-
-
-  const axiosPublic = useAxiosPublic();
 
   const { refetch } = useTodos();
 
@@ -38,17 +34,14 @@ const UpdateTask = () => {
 
   const status = data?.status;
 
-
   const onSubmit = async (data) => {
     const updatedData = { ...data, status };
 
-
     try {
-      const response = await axiosPublic.patch(
+      const response = await axiosSecure.patch(
         `/edit/${params?.id}`,
         updatedData
       );
-
 
       const success = response.data.result.modifiedCount;
       if (success) {
@@ -68,30 +61,26 @@ const UpdateTask = () => {
         loaded();
         reset();
       } else {
-        toast.error("Failed to update todo !!!",{
+        toast.error("Failed to update todo !!!", {
           style: {
             border: "1px solid #FF8303",
-            padding: '16px',
-            color: 'white',
+            padding: "16px",
+            color: "white",
             backgroundColor: "#242320",
-          }
+          },
         });
       }
     } catch (error) {
-      toast.error("An error has occurred !!!",{
+      toast.error("An error has occurred !!!", {
         style: {
           border: "1px solid #FF8303",
-          padding: '16px',
-          color: 'white',
+          padding: "16px",
+          color: "white",
           backgroundColor: "#242320",
-        }
+        },
       });
     }
   };
-
-const deadlineValue = data.deadline;
-
-  const parsedDeadline = deadlineValue ? parseISO(deadlineValue) : null;
 
   return (
     <div className="min-h-[calc(100vh-150px)]  md:w-3/4 lg:w-1/2 mx-auto flex justify-center items-center">
@@ -134,13 +123,13 @@ const deadlineValue = data.deadline;
                 dateFormat="dd/MM/yyyy"
                 minDate={new Date()}
                 isClearable
-                className="py-2 px-2 rounded-md w-full bg-[#1B1A17] "
+                className="py-2 px-2 text-white rounded-md w-full bg-[#1B1A17] "
                 selected={field.value}
                 onChange={(date) => field.onChange(date)}
-                calendarClassName="bg-custom-calendar text-white" 
+                calendarClassName="bg-custom-calendar text-white"
               />
             )}
-            defaultValue={parsedDeadline}
+            defaultValue={data.deadline ? new Date(data.deadline) : undefined}
           />
         </div>
         <div>

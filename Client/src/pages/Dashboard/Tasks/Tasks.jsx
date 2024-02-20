@@ -9,8 +9,8 @@ import "sweetalert2/src/sweetalert2.scss";
 
 import { MdEdit } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
-import useAxiosPublic from "../../../api/useAxiosPublic";
 import { MdDelete } from "react-icons/md";
+import useAxiosSecure from "../../../api/useAxiosSecure";
 
 const Tasks = ({ task, refetch }) => {
   const { _id, title, priority } = task;
@@ -23,7 +23,7 @@ const Tasks = ({ task, refetch }) => {
     }),
   }));
 
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const handleRemove = () => {
     Swal.fire({
@@ -36,7 +36,7 @@ const Tasks = ({ task, refetch }) => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosPublic.delete(`/tasks/${_id}`);
+        const res = await axiosSecure.delete(`/tasks/${_id}`);
         if (res?.data?.result.deletedCount) {
           toast.success("To do has been deleted", {
             style: {

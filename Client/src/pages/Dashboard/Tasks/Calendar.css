@@ -23,7 +23,6 @@
   background-color: #A35709;
 }
 
-/* .react-datepicker__header {
-  background-color: #A35709;
-  color: white;
-} */
+.react-datepicker__day--disabled{
+  color: red;
+}

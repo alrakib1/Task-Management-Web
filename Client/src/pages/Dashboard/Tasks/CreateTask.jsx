@@ -3,15 +3,17 @@ import PropTypes from "prop-types";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import useAxiosPublic from "../../../api/useAxiosPublic";
+
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useTodos from "../../../api/useTodos";
 import { CiCalendar } from "react-icons/ci";
 import "./Calendar.css";
+import useAxiosSecure from "../../../api/useAxiosSecure";
 
 const CreateTask = () => {
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
 
   const { user } = useAuth();
 
@@ -26,8 +28,7 @@ const CreateTask = () => {
     const todoData = { ...data, email, status };
 
     try {
-      const response = await axiosPublic.post("/todo", todoData);
-      //   console.log(response.data);
+      const response = await axiosSecure.post("/todo", todoData);
 
       const success = response.data.result.insertedId;
       if (success) {

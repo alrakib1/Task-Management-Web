@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import Header from "../Tasks/Header";
 import Tasks from "../Tasks/Tasks";
 import { useDrop } from "react-dnd";
-import useAxiosPublic from "../../../api/useAxiosPublic";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../api/useAxiosSecure";
 
 const Section = ({ stat, todo, completed, ongoing, refetch }) => {
-  const axiosPublic = useAxiosPublic();
+const axiosSecure = useAxiosSecure();
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
@@ -17,14 +17,14 @@ const Section = ({ stat, todo, completed, ongoing, refetch }) => {
   }));
 
   const addItemToSection = async (id) => {
-    // console.log("dropped ", id, stat);
+
 
     const updatedStatus = {
       status: stat,
     };
 
-    const response = await axiosPublic.patch(`/tasks/${id}`, updatedStatus);
-    // console.log(response.data.result.modifiedCount)
+    const response = await axiosSecure.patch(`/tasks/${id}`, updatedStatus);
+
     if (response.data.result.modifiedCount > 0) {
       toast.success(`Moved to ${stat}`, {
         style: {

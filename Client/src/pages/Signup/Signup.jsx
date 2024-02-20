@@ -10,14 +10,14 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 
 // icons
-import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import useAxiosPublic from "../../api/useAxiosPublic";
 
 const Signup = () => {
   const [showPass, setShowPass] = useState(false);
 
   const navigate = useNavigate();
-  const { signUp, user, loginWithGmail, updateUser } = useAuth();
+  const { signUp, user, updateUser } = useAuth();
 
   const { register, handleSubmit } = useForm();
 
@@ -110,31 +110,6 @@ const Signup = () => {
     }
   };
 
-  const handleGoogleSignup = () => {
-    loginWithGmail()
-      .then((result) => {
-        const newUser = result.user;
-        newUser &&
-          toast.success("Signup successful", {
-            style: {
-              border: "1px solid #FF8303",
-              padding: "16px",
-              color: "white",
-              backgroundColor: "#242320",
-            },
-            iconTheme: {
-              primary: "#FF8303",
-              secondary: "#FFFAEE",
-            },
-          });
-        // console.log(user);
-        navigate("/");
-      })
-      .catch(() => {
-        // console.log(error);
-      });
-  };
-
   return (
     <Container>
       <Helmet>
@@ -203,20 +178,6 @@ const Signup = () => {
                   Signup
                 </button>
               </form>
-              <div className="mt-10 grid grid-cols-3 text-gray-500 items-center">
-                <hr className="border-gray-500" />
-                <p className="text-center text-sm">OR</p>
-                <hr className="border-gray-500" />
-              </div>
-              <div>
-                <button
-                  onClick={() => handleGoogleSignup()}
-                  className="border bg-[#A35709] py-2 w-full rounded-xl mt-5 flex justify-center items-center hover:scale-105 duration-300 hover:bg-[#FF8303] hover:text-white"
-                >
-                  <FaGoogle className="w-[25px] mr-1 text-sm" />
-                  Signup in with google
-                </button>
-              </div>
 
               <div className="text-xs mt-3 flex justify-between items-center">
                 <p>Already have an account ....</p>
