@@ -3,9 +3,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://taskify-web-app-lovat.vercel.app",
   withCredentials: true,
 });
 
